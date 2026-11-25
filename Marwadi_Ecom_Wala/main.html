@@ -1,0 +1,4946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Marwadi Ecom Wala | Build. Grow. Scale.</title>
+    <meta name="description"
+        content="Marketplace onboarding, listing, advertising and account management for Amazon, Flipkart and Meesho, plus Amazon and Shopify dropshipping setup.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #02183D;
+            --royal: #032C6B;
+            --gold: #E8A107;
+            --bright: #FAD327;
+            --bronze: #AE6D08;
+            --soft: #F2E397;
+            --canvas: #F8F7F2;
+            --hdr: rgba(248, 247, 242, .9);
+            --card: #fff;
+            --h: #02183D;
+            --body: #263A63;
+            --sec: #53627A;
+            --ch: #02183D;
+            --cb: #263A63;
+            --line: rgba(2, 24, 61, .1);
+            --dots: rgba(2, 24, 61, .07);
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --canvas: #061633;
+                --hdr: rgba(6, 22, 51, .9);
+                --card: #0B2250;
+                --h: #fff;
+                --body: #DCE4F5;
+                --sec: #9FB0D0;
+                --ch: #fff;
+                --cb: #DCE4F5;
+                --line: rgba(255, 255, 255, .12);
+                --dots: rgba(255, 255, 255, .06)
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --canvas: #061633;
+            --hdr: rgba(6, 22, 51, .9);
+            --card: #0B2250;
+            --h: #fff;
+            --body: #DCE4F5;
+            --sec: #9FB0D0;
+            --ch: #fff;
+            --cb: #DCE4F5;
+            --line: rgba(255, 255, 255, .12);
+            --dots: rgba(255, 255, 255, .06)
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(76px + env(safe-area-inset-top, 0px))
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Manrope, Inter, "Plus Jakarta Sans", system-ui, sans-serif;
+            background: var(--canvas);
+            color: var(--body);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0 0 auto;
+            height: env(safe-area-inset-top, 0px);
+            z-index: 10;
+            background: var(--hdr);
+            backdrop-filter: blur(14px)
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--h);
+            line-height: 1.15;
+            letter-spacing: -.01em
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--bright);
+            outline-offset: 3px;
+            border-radius: 8px
+        }
+
+        .wrap {
+            width: min(1160px, 100% - 40px);
+            margin-inline: auto
+        }
+
+        .sec {
+            padding: clamp(56px, 9vw, 104px) 0
+        }
+
+        .dk {
+            --h: #fff;
+            --body: #DCE4F5;
+            --sec: #B7C4E0;
+            color: var(--body)
+        }
+
+        /* header */
+        header {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 20;
+            background: var(--hdr);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid transparent;
+            transition: border-color .3s, box-shadow .3s
+        }
+
+        header.sc {
+            border-color: var(--line);
+            box-shadow: 0 8px 30px -18px rgba(2, 24, 61, .4)
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px
+        }
+
+        .logo {
+            display: block;
+            background: #fff;
+            border-radius: 10px;
+            padding: 5px 12px
+        }
+
+        .logo img {
+            display: block;
+            height: 38px;
+            width: auto
+        }
+
+        nav ul {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 12px;
+            font-weight: 700;
+            font-size: .92rem;
+            color: var(--h);
+            border-radius: 999px;
+            transition: background .2s, color .2s
+        }
+
+        nav a:hover {
+            background: rgba(232, 161, 7, .16)
+        }
+
+        nav .cta-n {
+            background: linear-gradient(135deg, var(--bright), var(--gold));
+            color: var(--navy)
+        }
+
+        .burger {
+            display: none;
+            width: 48px;
+            height: 48px;
+            border: 0;
+            background: none;
+            color: var(--h);
+            cursor: pointer
+        }
+
+        .burger i,
+        .burger i::before,
+        .burger i::after {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: currentColor;
+            margin: auto;
+            position: relative;
+            transition: .3s
+        }
+
+        .burger i::before,
+        .burger i::after {
+            content: "";
+            position: absolute;
+            left: 0
+        }
+
+        .burger i::before {
+            top: -7px
+        }
+
+        .burger i::after {
+            top: 7px
+        }
+
+        .burger[aria-expanded=true] i {
+            background: transparent
+        }
+
+        .burger[aria-expanded=true] i::before {
+            top: 0;
+            transform: rotate(45deg)
+        }
+
+        .burger[aria-expanded=true] i::after {
+            top: 0;
+            transform: rotate(-45deg)
+        }
+
+        @media(max-width:900px) {
+            .burger {
+                display: block
+            }
+
+            nav {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 100%;
+                background: var(--canvas);
+                border-bottom: 1px solid var(--line);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .4s ease
+            }
+
+            nav.open {
+                max-height: 480px
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 10px 20px 20px
+            }
+
+            nav a {
+                padding: 14px 12px;
+                font-size: 1rem
+            }
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 26px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: .98rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform .2s, box-shadow .3s
+        }
+
+        .btn.g {
+            background: linear-gradient(135deg, var(--bright), var(--gold));
+            color: var(--navy);
+            box-shadow: 0 10px 30px -10px rgba(232, 161, 7, .7);
+            animation: glow 3.4s ease-in-out infinite
+        }
+
+        .btn.l {
+            border-color: rgba(255, 255, 255, .35);
+            color: #fff
+        }
+
+        .btn.l:hover {
+            background: rgba(255, 255, 255, .08)
+        }
+
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+
+        @keyframes glow {
+            50% {
+                box-shadow: 0 10px 44px -6px rgba(250, 211, 39, .8)
+            }
+        }
+
+        /* hero: canvas A */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(70% 60% at 85% 0%, rgba(3, 44, 107, .95), transparent 70%), radial-gradient(40% 40% at 8% 100%, rgba(232, 161, 7, .16), transparent 70%), var(--navy);
+            padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 96px)
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .07;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")
+        }
+
+        .hero .wrap {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 44px;
+            align-items: center
+        }
+
+        @media(min-width:900px) {
+            .hero .wrap {
+                grid-template-columns: 1.1fr .9fr
+            }
+        }
+
+        .perm {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 1px solid rgba(250, 211, 39, .45);
+            border-radius: 999px;
+            color: var(--bright);
+            font-weight: 800;
+            letter-spacing: .04em;
+            font-size: .95rem;
+            margin-bottom: 22px;
+            animation: rise .8s both
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6.4vw, 3.7rem);
+            font-weight: 800;
+            animation: rise .8s .12s both
+        }
+
+        .rot {
+            display: grid;
+            margin: 22px 0 16px;
+            color: var(--bright);
+            font-weight: 700;
+            font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+            animation: rise .8s .24s both
+        }
+
+        .rot span {
+            grid-area: 1/1;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .6s, transform .6s
+        }
+
+        .rot span.on {
+            opacity: 1;
+            transform: none
+        }
+
+        .sub {
+            font-size: .88rem;
+            max-width: 520px;
+            color: #B7C4E0;
+            animation: rise .8s .36s both
+        }
+
+        .acts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+            animation: rise .8s .48s both
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+        }
+
+        .viz {
+            position: relative;
+            border-radius: 28px;
+            padding: 20px;
+            background: linear-gradient(160deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .14);
+            box-shadow: 0 40px 80px -40px #000;
+            animation: rise 1s .3s both
+        }
+
+        .viz svg {
+            display: block;
+            width: 100%;
+            height: auto
+        }
+
+        .b {
+            transform-box: fill-box;
+            transform-origin: bottom;
+            animation: grow 1.1s cubic-bezier(.2, .8, .2, 1) both
+        }
+
+        @keyframes grow {
+            from {
+                transform: scaleY(0)
+            }
+        }
+
+        .ln {
+            stroke-dasharray: 520;
+            stroke-dashoffset: 520;
+            animation: draw 1.8s .9s ease forwards
+        }
+
+        .ah {
+            opacity: 0;
+            animation: fade .5s 2.5s forwards
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0
+            }
+        }
+
+        @keyframes fade {
+            to {
+                opacity: 1
+            }
+        }
+
+        .mk {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--navy);
+            font-weight: 800;
+            font-size: .82rem;
+            box-shadow: 0 14px 30px -12px #000;
+            animation: fl 5s ease-in-out infinite
+        }
+
+        .mk i,
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--c);
+            display: inline-block
+        }
+
+        @keyframes fl {
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        /* services: canvas B */
+        .dotbg {
+            background-image: radial-gradient(var(--dots) 1.2px, transparent 1.4px);
+            background-size: 22px 22px
+        }
+
+        .hd {
+            max-width: 760px;
+            margin-bottom: 40px
+        }
+
+        .hd h2 {
+            font-size: clamp(1.6rem, 4.4vw, 2.6rem);
+            font-weight: 800
+        }
+
+        .hd p {
+            margin-top: 16px;
+            color: var(--sec);
+            font-size: 1.02rem
+        }
+
+        .dk .hd p {
+            color: #DCE4F5
+        }
+
+        .track {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 6px 20px 24px;
+            margin-inline: -20px;
+            scrollbar-width: none
+        }
+
+        .track::-webkit-scrollbar {
+            display: none
+        }
+
+        .sc-card {
+            flex: 0 0 min(84%, 350px);
+            scroll-snap-align: start;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 28px 26px;
+            transition: transform .3s, box-shadow .3s, border-color .3s
+        }
+
+        .sc-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 24px 50px -24px rgba(2, 24, 61, .4)
+        }
+
+        .sc-card .n {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: var(--navy);
+            color: var(--bright);
+            font-weight: 800;
+            margin-bottom: 20px
+        }
+
+        .sc-card h3 {
+            color: var(--ch);
+            font-size: 1.2rem
+        }
+
+        .sc-card b {
+            display: block;
+            margin: 12px 0;
+            color: var(--bronze);
+            font-weight: 700;
+            line-height: 1.45
+        }
+
+        .sc-card p {
+            color: var(--cb);
+            font-size: .95rem
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .sc-card b {
+                color: var(--bright)
+            }
+        }
+
+        .ctl {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 6px
+        }
+
+        .prog {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            background: var(--line);
+            overflow: hidden
+        }
+
+        .prog i {
+            display: block;
+            height: 100%;
+            width: 20%;
+            background: linear-gradient(90deg, var(--gold), var(--bright));
+            border-radius: 4px;
+            transition: width .2s
+        }
+
+        .arr {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--ch);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background .2s
+        }
+
+        .arr:hover {
+            background: var(--bright);
+            color: var(--navy)
+        }
+
+        /* marketplaces: canvas C */
+        .mkt {
+            background: linear-gradient(160deg, var(--navy), var(--royal) 60%, #041f4d)
+        }
+
+        .grid3 {
+            display: grid;
+            gap: 26px
+        }
+
+        @media(min-width:900px) {
+            .grid3 {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        .mc {
+            --c: #FF9900;
+            background: var(--card);
+            border-radius: 24px;
+            padding: 30px 26px;
+            border: 1.5px solid var(--c);
+            box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 18%, transparent), 0 30px 70px -26px var(--c);
+            display: flex;
+            flex-direction: column;
+            transition: transform .3s
+        }
+
+        .mc:hover {
+            transform: translateY(-8px)
+        }
+
+        .mc h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ch);
+            font-size: 1.5rem
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px
+        }
+
+        .badge {
+            align-self: flex-start;
+            margin: 14px 0;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--soft);
+            color: #5B3A02;
+            font-weight: 800;
+            font-size: .84rem;
+            line-height: 1.4
+        }
+
+        .mc p {
+            color: var(--cb);
+            font-size: .96rem
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 24px
+        }
+
+        .chips span {
+            padding: 7px 13px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: var(--ch);
+            font-weight: 700;
+            font-size: .85rem
+        }
+
+        .more {
+            margin-top: auto;
+            font-weight: 800;
+            color: var(--bronze);
+            border-bottom: 2px solid var(--gold);
+            align-self: flex-start;
+            padding-bottom: 2px
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .more {
+                color: var(--bright)
+            }
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity .8s, transform .8s
+        }
+
+        .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .rv:nth-child(2) {
+            transition-delay: .12s
+        }
+
+        .rv:nth-child(3) {
+            transition-delay: .24s
+        }
+
+        /* dropshipping */
+        .grid2 {
+            display: grid;
+            gap: 26px
+        }
+
+        @media(min-width:800px) {
+            .grid2 {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .ds {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 6px solid var(--gold);
+            border-radius: 22px;
+            padding: 34px 30px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .ds h3 {
+            color: var(--ch);
+            font-size: 1.5rem
+        }
+
+        .ds b {
+            display: block;
+            margin: 12px 0;
+            color: var(--bronze);
+            line-height: 1.45
+        }
+
+        .ds p {
+            color: var(--cb)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .ds b {
+                color: var(--bright)
+            }
+        }
+
+        /* cta + footer */
+        .ctab {
+            text-align: center;
+            background: radial-gradient(60% 90% at 50% 0%, rgba(3, 44, 107, .9), transparent), radial-gradient(40% 60% at 50% 120%, rgba(232, 161, 7, .22), transparent), var(--navy)
+        }
+
+        .ctab h2 {
+            font-size: clamp(1.7rem, 5vw, 2.8rem);
+            font-weight: 800
+        }
+
+        .ctab p {
+            max-width: 620px;
+            margin: 16px auto 30px
+        }
+
+        footer {
+            background: #011230;
+            color: #DCE4F5;
+            padding: 56px 0 calc(110px + env(safe-area-inset-bottom, 0px))
+        }
+
+        .fg {
+            display: grid;
+            gap: 34px
+        }
+
+        @media(min-width:800px) {
+            .fg {
+                grid-template-columns: 1.4fr 1fr 1fr;
+                padding-bottom: 10px
+            }
+        }
+
+        footer h4 {
+            margin: 0 0 14px;
+            color: var(--bright);
+            font-size: 1rem
+        }
+
+        footer ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 8px
+        }
+
+        footer a:hover {
+            color: var(--bright)
+        }
+
+        .tg {
+            margin-top: 16px;
+            color: var(--bright);
+            font-weight: 800
+        }
+
+        .cp {
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            font-size: .85rem;
+            color: #9FB0D0
+        }
+
+        /* sticky mobile bar */
+        .mb {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 30;
+            display: flex;
+            gap: 10px;
+            padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+            background: rgba(2, 24, 61, .94);
+            backdrop-filter: blur(12px)
+        }
+
+        .mb a {
+            flex: 1;
+            min-height: 48px
+        }
+
+        .mb .btn {
+            padding: 0 12px
+        }
+
+        @media(min-width:900px) {
+            .mb {
+                display: none
+            }
+
+            footer {
+                padding-bottom: 56px
+            }
+        }
+
+        /* v2: moving grid, centre alignment, stats */
+        .gridbg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(250, 211, 39, .1) 1px, transparent 1px), linear-gradient(90deg, rgba(250, 211, 39, .1) 1px, transparent 1px);
+            background-size: 56px 56px;
+            animation: gm 16s linear infinite;
+            -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 55%, #000 25%, transparent 100%);
+            mask-image: radial-gradient(ellipse 85% 75% at 50% 55%, #000 25%, transparent 100%)
+        }
+
+        @keyframes gm {
+            to {
+                background-position: 56px 56px
+            }
+        }
+
+        .mkt,
+        .ctab {
+            position: relative;
+            overflow: hidden
+        }
+
+        .dk>.wrap {
+            position: relative;
+            z-index: 1
+        }
+
+        .hero .wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0
+        }
+
+        .hc {
+            width: 100%;
+            max-width: 900px
+        }
+
+        .sub {
+            margin-inline: auto;
+            max-width: 600px
+        }
+
+        .acts {
+            justify-content: center
+        }
+
+        .viz {
+            width: 100%;
+            max-width: 620px;
+            margin-top: 56px
+        }
+
+        .hd {
+            margin: 0 auto 40px;
+            text-align: center
+        }
+
+        .sc-card,
+        .ds,
+        .mc {
+            text-align: center
+        }
+
+        .sc-card .n {
+            margin: 0 auto 20px
+        }
+
+        .mc h3 {
+            justify-content: center
+        }
+
+        .badge {
+            align-self: center
+        }
+
+        .chips {
+            justify-content: center
+        }
+
+        .more {
+            align-self: center
+        }
+
+        .ds {
+            border-left: 1px solid var(--line);
+            border-top: 6px solid var(--gold)
+        }
+
+        .ctl {
+            max-width: 520px;
+            margin: 6px auto 0
+        }
+
+        .fg .logo {
+            display: inline-block
+        }
+
+        @media(max-width:799px) {
+            .fg {
+                text-align: center;
+                justify-items: center
+            }
+        }
+
+        /* v3: logo size, phone first-screen split, brand icons */
+        .logo img {
+            height: 32px
+        }
+
+        .core {
+            width: 24%
+        }
+
+        .nd i svg {
+            display: block;
+            width: 100%;
+            height: 100%
+        }
+
+        /* hub visual v2 */
+        .hub {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1/1;
+            margin: 48px auto 0;
+            animation: rise 1s .3s both
+        }
+
+        .hub svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible
+        }
+
+        .rg {
+            fill: none;
+            stroke: rgba(255, 255, 255, .1);
+            stroke-width: .2
+        }
+
+        .sp {
+            fill: none;
+            stroke: rgba(255, 255, 255, .16);
+            stroke-width: .28;
+            transition: stroke .3s, stroke-width .3s
+        }
+
+        .pl {
+            fill: none;
+            stroke: #FAD327;
+            stroke-width: .5;
+            stroke-linecap: round;
+            stroke-dasharray: 9 91;
+            animation: flow 3.8s linear infinite
+        }
+
+        @keyframes flow {
+            to {
+                stroke-dashoffset: -100
+            }
+        }
+
+        .sg.on .sp {
+            stroke: #FAD327;
+            stroke-width: .6;
+            filter: drop-shadow(0 0 1.4px #FAD327)
+        }
+
+        .sg.on .pl {
+            stroke: #fff;
+            stroke-width: .8;
+            animation-duration: 1.1s
+        }
+
+        .core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 24%;
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            border-radius: 22%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 0 1px rgba(250, 211, 39, .45), 0 18px 50px -12px rgba(0, 0, 0, .6)
+        }
+
+        .core::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(250, 211, 39, .55);
+            animation: rip 4.5s ease-out infinite
+        }
+
+        @keyframes rip {
+            from {
+                transform: scale(1);
+                opacity: .7
+            }
+
+            to {
+                transform: scale(1.7);
+                opacity: 0
+            }
+        }
+
+        .core img {
+            width: 84%;
+            height: auto;
+            display: block
+        }
+
+        @keyframes ndin {
+            from {
+                opacity: 0;
+                scale: .92
+            }
+        }
+
+        .nd:nth-of-type(1) {
+            animation-delay: .5s
+        }
+
+        .nd:nth-of-type(2) {
+            animation-delay: .6s
+        }
+
+        .nd:nth-of-type(3) {
+            animation-delay: .7s
+        }
+
+        .nd:nth-of-type(4) {
+            animation-delay: .8s
+        }
+
+        .nd:nth-of-type(5) {
+            animation-delay: .9s
+        }
+
+        .nd:nth-of-type(6) {
+            animation-delay: 1s
+        }
+
+        .nd i {
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: var(--c);
+            overflow: hidden;
+            color: #fff;
+            font-style: normal;
+            font-weight: 800;
+            font-size: .78rem
+        }
+
+        .nd i svg,
+        .nd i img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain
+        }
+
+        .nd i.lg {
+            background: #fff
+        }
+
+        .nd b {
+            display: block;
+            font-size: .86rem;
+            line-height: 1.15;
+            text-align: left;
+            white-space: nowrap
+        }
+
+        .nd small {
+            display: block;
+            font-size: .68rem;
+            color: #B7C4E0;
+            text-align: left;
+            line-height: 1.3;
+            white-space: nowrap
+        }
+
+        @media(max-width:560px) {
+            .hub {
+                margin-top: 36px
+            }
+
+            .nd small {
+                display: none
+            }
+
+            .nd i {
+                width: 28px;
+                height: 28px;
+                font-size: .68rem
+            }
+
+            .nd b {
+                font-size: .74rem;
+                white-space: normal;
+                max-width: 70px
+            }
+        }
+
+        /* v4: dark services + galaxy stars + gold cards + hub float */
+        .sv {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(60% 40% at 50% 0%, rgba(3, 44, 107, .55), transparent 70%), #02183D
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .stars::before,
+        .stars::after {
+            content: "";
+            position: absolute;
+            inset: -360px 0 0 -360px
+        }
+
+        .stars::before {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Ccircle cx='72' cy='295' r='1.0' fill='white' fill-opacity='0.77'/%3E%3Ccircle cx='134' cy='64' r='0.8' fill='white' fill-opacity='0.60'/%3E%3Ccircle cx='337' cy='198' r='1.0' fill='white' fill-opacity='0.40'/%3E%3Ccircle cx='18' cy='203' r='0.8' fill='white' fill-opacity='0.77'/%3E%3Ccircle cx='5' cy='232' r='0.7' fill='white' fill-opacity='0.79'/%3E%3Ccircle cx='306' cy='56' r='1.0' fill='white' fill-opacity='0.37'/%3E%3Ccircle cx='17' cy='336' r='0.8' fill='white' fill-opacity='0.87'/%3E%3Ccircle cx='199' cy='355' r='0.6' fill='white' fill-opacity='0.58'/%3E%3Ccircle cx='18' cy='274' r='0.6' fill='white' fill-opacity='0.59'/%3E%3Ccircle cx='257' cy='287' r='0.6' fill='white' fill-opacity='0.48'/%3E%3Ccircle cx='116' cy='239' r='1.1' fill='white' fill-opacity='0.86'/%3E%3Ccircle cx='217' cy='288' r='1.1' fill='white' fill-opacity='0.41'/%3E%3Ccircle cx='326' cy='155' r='0.6' fill='white' fill-opacity='0.53'/%3E%3Ccircle cx='260' cy='220' r='0.8' fill='white' fill-opacity='0.85'/%3E%3Ccircle cx='101' cy='159' r='0.7' fill='white' fill-opacity='0.89'/%3E%3Ccircle cx='259' cy='262' r='0.7' fill='white' fill-opacity='0.82'/%3E%3Ccircle cx='249' cy='128' r='0.9' fill='white' fill-opacity='0.57'/%3E%3Ccircle cx='344' cy='92' r='0.7' fill='white' fill-opacity='0.84'/%3E%3Ccircle cx='349' cy='195' r='0.6' fill='white' fill-opacity='0.72'/%3E%3Ccircle cx='59' cy='87' r='0.8' fill='white' fill-opacity='0.57'/%3E%3Ccircle cx='254' cy='19' r='0.8' fill='white' fill-opacity='0.52'/%3E%3Ccircle cx='318' cy='307' r='0.8' fill='white' fill-opacity='0.71'/%3E%3Ccircle cx='90' cy='261' r='0.6' fill='white' fill-opacity='0.36'/%3E%3Ccircle cx='106' cy='280' r='1.1' fill='white' fill-opacity='0.65'/%3E%3Ccircle cx='211' cy='267' r='0.7' fill='white' fill-opacity='0.82'/%3E%3Ccircle cx='184' cy='239' r='1.0' fill='white' fill-opacity='0.71'/%3E%3Ccircle cx='315' cy='6' r='0.7' fill='white' fill-opacity='0.82'/%3E%3Ccircle cx='266' cy='70' r='0.8' fill='white' fill-opacity='0.66'/%3E%3Ccircle cx='222' cy='32' r='0.8' fill='white' fill-opacity='0.55'/%3E%3Ccircle cx='287' cy='106' r='1.1' fill='white' fill-opacity='0.58'/%3E%3Ccircle cx='186' cy='216' r='0.7' fill='white' fill-opacity='0.65'/%3E%3Ccircle cx='323' cy='317' r='0.7' fill='white' fill-opacity='0.68'/%3E%3Ccircle cx='121' cy='329' r='0.6' fill='white' fill-opacity='0.67'/%3E%3Ccircle cx='50' cy='286' r='1.0' fill='white' fill-opacity='0.80'/%3E%3Ccircle cx='134' cy='20' r='1.0' fill='white' fill-opacity='0.72'/%3E%3Ccircle cx='46' cy='12' r='0.8' fill='white' fill-opacity='0.76'/%3E%3Ccircle cx='147' cy='131' r='0.7' fill='white' fill-opacity='0.79'/%3E%3Ccircle cx='98' cy='180' r='0.7' fill='white' fill-opacity='0.44'/%3E%3Ccircle cx='134' cy='274' r='1.1' fill='white' fill-opacity='0.71'/%3E%3Ccircle cx='335' cy='154' r='0.8' fill='white' fill-opacity='0.53'/%3E%3Ccircle cx='246' cy='62' r='0.5' fill='white' fill-opacity='0.56'/%3E%3Ccircle cx='219' cy='100' r='0.7' fill='white' fill-opacity='0.49'/%3E%3Ccircle cx='265' cy='111' r='1.1' fill='white' fill-opacity='0.59'/%3E%3Ccircle cx='14' cy='119' r='0.5' fill='white' fill-opacity='0.43'/%3E%3Ccircle cx='86' cy='232' r='0.9' fill='white' fill-opacity='0.72'/%3E%3Ccircle cx='282' cy='116' r='1.1' fill='white' fill-opacity='0.70'/%3E%3C/svg%3E");
+            animation: dr 170s linear infinite, tw 6s ease-in-out infinite
+        }
+
+        .stars::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Ccircle cx='32' cy='50' r='1.2' fill='white' fill-opacity='0.81'/%3E%3Ccircle cx='346' cy='161' r='1.3' fill='white' fill-opacity='0.47'/%3E%3Ccircle cx='352' cy='85' r='1.9' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.70'/%3E%3Ccircle cx='264' cy='194' r='1.5' fill='white' fill-opacity='0.59'/%3E%3Ccircle cx='22' cy='18' r='1.4' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.86'/%3E%3Ccircle cx='220' cy='273' r='1.2' fill='white' fill-opacity='0.45'/%3E%3Ccircle cx='94' cy='170' r='1.2' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.63'/%3E%3Ccircle cx='267' cy='349' r='1.5' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.90'/%3E%3Ccircle cx='216' cy='272' r='1.8' fill='white' fill-opacity='0.77'/%3E%3Ccircle cx='185' cy='189' r='1.9' fill='white' fill-opacity='0.88'/%3E%3Ccircle cx='208' cy='240' r='1.6' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.49'/%3E%3Ccircle cx='259' cy='260' r='1.5' fill='rgb%28250%2C211%2C39%29' fill-opacity='0.79'/%3E%3Ccircle cx='236' cy='240' r='1.4' fill='white' fill-opacity='0.75'/%3E%3Ccircle cx='237' cy='253' r='1.6' fill='white' fill-opacity='0.87'/%3E%3C/svg%3E");
+            animation: dr 110s linear infinite, tw 9s ease-in-out infinite -3s
+        }
+
+        @keyframes dr {
+            to {
+                transform: translate(360px, 360px)
+            }
+        }
+
+        @keyframes tw {
+            50% {
+                opacity: .4
+            }
+        }
+
+        .sc-card,
+        .ds {
+            background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03));
+            border: 1.5px solid rgba(250, 211, 39, .6);
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .07), 0 22px 50px -26px rgba(250, 211, 39, .45);
+            --ch: #fff;
+            --cb: #DCE4F5;
+            --line: rgba(255, 255, 255, .2)
+        }
+
+        .sc-card:hover {
+            border-color: #FAD327;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .14), 0 26px 60px -24px rgba(250, 211, 39, .6)
+        }
+
+        .sc-card b,
+        .ds b {
+            color: var(--bright)
+        }
+
+        .sc-card {
+            padding: 28px 24px
+        }
+
+        .sc-card .ic {
+            display: grid;
+            place-items: center;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 18px;
+            border-radius: 16px;
+            color: var(--bright);
+            background: rgba(250, 211, 39, .1);
+            border: 1px solid rgba(250, 211, 39, .4)
+        }
+
+        .sc-card .ic svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .bl {
+            list-style: none;
+            margin: 16px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+            text-align: left
+        }
+
+        .bl li {
+            position: relative;
+            padding-left: 24px;
+            color: #DCE4F5;
+            font-size: .93rem;
+            line-height: 1.5
+        }
+
+        .bl li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: .42em;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #FAD327 32%, rgba(250, 211, 39, .2) 38%);
+            border: 1px solid rgba(250, 211, 39, .6)
+        }
+
+        .arr {
+            border-color: rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, .06);
+            color: #fff
+        }
+
+        .prog {
+            background: rgba(255, 255, 255, .15)
+        }
+
+        .sv .more {
+            color: var(--bright)
+        }
+
+        .nd {
+            position: absolute;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            animation: ndin .7s both
+        }
+
+        .cd {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 14px 7px 7px;
+            border-radius: 14px;
+            background: rgba(6, 22, 51, .88);
+            border: 1px solid rgba(255, 255, 255, .14);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            box-shadow: 0 12px 28px -14px #000;
+            transition: transform .3s cubic-bezier(.2, .8, .2, 1), border-color .3s, box-shadow .3s, opacity .3s;
+            animation: fl3 7s ease-in-out infinite
+        }
+
+        .nd:nth-of-type(2n) .cd {
+            animation-delay: -2.3s
+        }
+
+        .nd:nth-of-type(3n) .cd {
+            animation-delay: -4.6s
+        }
+
+        @keyframes fl3 {
+            50% {
+                translate: 0 -5px
+            }
+        }
+
+        .nd:hover .cd,
+        .nd:focus-visible .cd {
+            transform: scale(1.1);
+            border-color: #FAD327;
+            box-shadow: 0 0 0 3px rgba(250, 211, 39, .22), 0 16px 34px -12px #000;
+            animation-play-state: paused
+        }
+
+        .hub.hv .nd:not(:hover):not(:focus-visible) .cd {
+            opacity: .5
+        }
+
+        @media(max-width:560px) {
+            .cd {
+                padding: 5px 9px 5px 5px;
+                gap: 6px
+            }
+        }
+
+        /* v6: marketplace section */
+        .mkt {
+            background: radial-gradient(40% 45% at 14% 66%, rgba(250, 211, 39, .12), transparent 72%), radial-gradient(40% 45% at 50% 74%, rgba(40, 116, 240, .2), transparent 72%), radial-gradient(40% 45% at 86% 66%, rgba(159, 32, 137, .2), transparent 72%), linear-gradient(180deg, #02183D, #031f4d 60%, #02183D)
+        }
+
+        .grid3 {
+            gap: 30px
+        }
+
+        .mc {
+            text-align: left;
+            background: linear-gradient(160deg, #0B2656, #061b45);
+            border: 2px solid var(--c);
+            border-radius: 24px;
+            padding: 0 0 24px;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 16%, transparent), 0 30px 60px -28px var(--c)
+        }
+
+        .mh {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 24px 0
+        }
+
+        .mlogo {
+            display: grid;
+            place-items: center;
+            flex: none;
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            background: #fff;
+            border: 2px solid var(--c);
+            overflow: hidden;
+            padding: 0
+        }
+
+        .mlogo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+            max-width: none;
+            max-height: none
+        }
+
+        .ph {
+            border: 0;
+            padding: 4px;
+            color: #5B6B8C;
+            font-size: .62rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.25
+        }
+
+        .mc h3 {
+            display: block;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #fff
+        }
+
+        .mb2 {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex: 1;
+            padding: 18px 24px 0
+        }
+
+        .gb {
+            position: relative;
+            overflow: hidden;
+            border: 1.5px solid var(--c);
+            border-radius: 12px;
+            transition: box-shadow .3s, background .3s, color .3s, transform .25s
+        }
+
+        .gb::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -70%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .6), transparent);
+            transform: skewX(-20deg);
+            transition: left .7s ease
+        }
+
+        .gb:hover::after {
+            left: 140%
+        }
+
+        .gb:hover {
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 25%, transparent), 0 0 26px color-mix(in srgb, var(--c) 50%, transparent)
+        }
+
+        .mc .badge.gb {
+            display: block;
+            align-self: stretch;
+            margin: 0 0 16px;
+            padding: 12px 14px;
+            background: color-mix(in srgb, var(--c) 22%, transparent);
+            color: var(--tx);
+            text-align: center;
+            font-weight: 800;
+            font-size: .92rem;
+            line-height: 1.4
+        }
+
+        .mc p {
+            color: #DCE4F5;
+            font-size: .97rem;
+            line-height: 1.75;
+            text-align: left
+        }
+
+        .mc strong {
+            color: #fff;
+            font-weight: 800
+        }
+
+        .hl {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .hl li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 6px;
+            background: none;
+            border: 0;
+            border-radius: 0;
+            color: #fff;
+            font-weight: 700;
+            font-size: .74rem;
+            line-height: 1.25;
+            text-align: center
+        }
+
+        .hl li+li {
+            border-left: 1px solid rgba(255, 255, 255, .14)
+        }
+
+        .hl em {
+            font-style: normal;
+            font-size: 1.3rem;
+            line-height: 1
+        }
+
+        .mkt .mc a.more.gb {
+            margin-top: auto;
+            align-self: stretch;
+            display: block;
+            padding: 14px 18px;
+            text-align: center;
+            background: color-mix(in srgb, var(--c) 20%, transparent);
+            color: var(--tx);
+            font-weight: 800;
+            box-shadow: none
+        }
+
+        .mkt .mc a.more.gb:hover {
+            transform: translateY(-2px);
+            background: var(--c);
+            color: var(--on);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 28%, transparent), 0 0 26px color-mix(in srgb, var(--c) 55%, transparent)
+        }
+
+        /* v9: dropshipping cards (compact, outline tagline + button) */
+        .sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap
+        }
+
+        .sv .grid2 {
+            max-width: 980px;
+            margin-inline: auto;
+            gap: 24px
+        }
+
+        .dc {
+            --b: var(--c);
+            background: #FBF8F0;
+            border: 2px solid var(--c);
+            border-radius: 24px;
+            padding: 0 0 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 18%, transparent), 0 28px 60px -28px var(--c);
+            transition: transform .3s
+        }
+
+        .dc:hover {
+            transform: translateY(-6px)
+        }
+
+        .dlogo {
+            display: grid;
+            place-items: center;
+            height: 104px;
+            background: linear-gradient(180deg, #fff, color-mix(in srgb, var(--c) 14%, #fff))
+        }
+
+        .dlogo img {
+            max-width: 80%;
+            max-height: 72px;
+            width: auto;
+            height: auto;
+            object-fit: contain
+        }
+
+        .dlogo .ph {
+            padding: 8px 18px;
+            border: 1.5px dashed var(--c2);
+            border-radius: 12px;
+            color: var(--c2);
+            font-size: .78rem;
+            font-weight: 800;
+            line-height: 1.35;
+            text-align: center
+        }
+
+        .db {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 18px 20px 0
+        }
+
+        .dtag,
+        .sv .dc a.more.dbtn {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--b);
+            border-radius: 14px;
+            background: transparent;
+            color: #02183D;
+            font-weight: 800;
+            transition: background .3s, color .3s, box-shadow .3s, transform .25s
+        }
+
+        .dtag {
+            display: block;
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            font-size: .9rem;
+            line-height: 1.45;
+            text-align: center
+        }
+
+        .dtag::after,
+        .dbtn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -70%;
+            width: 45%;
+            height: 100%;
+            transform: skewX(-20deg);
+            transition: left .7s ease
+        }
+
+        .dtag::after {
+            background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--c) 50%, #fff), transparent)
+        }
+
+        .dbtn::after {
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .7), transparent)
+        }
+
+        .dtag:hover::after,
+        .dbtn:hover::after {
+            left: 140%
+        }
+
+        .dtag:hover {
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 25%, transparent)
+        }
+
+        .dc p {
+            color: #263A63;
+            font-size: .93rem;
+            line-height: 1.65
+        }
+
+        .dc strong {
+            color: #02183D;
+            font-weight: 800
+        }
+
+        .dg {
+            list-style: none;
+            margin: 16px 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+
+        .dg li {
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--c) 14%, #fff);
+            border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+            color: #02183D;
+            font-weight: 800;
+            font-size: .84rem;
+            line-height: 1.35
+        }
+
+        .sv .dc a.more.dbtn {
+            margin-top: auto;
+            align-self: stretch;
+            display: block;
+            padding: 12px 18px;
+            text-align: center
+        }
+
+        .sv .dc a.more.dbtn:hover {
+            background: var(--c);
+            color: var(--on);
+            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 28%, transparent), 0 0 24px color-mix(in srgb, var(--c) 50%, transparent)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .stars::before,
+            .stars::after,
+            .gridbg,
+            .pl,
+            .core::after,
+            .cd,
+            .btn.g,
+            .hub,
+            .nd,
+            .perm,
+            .hero h1,
+            .rot,
+            .sub,
+            .acts {
+                animation: none !important
+            }
+
+            .rv {
+                opacity: 1;
+                transform: none
+            }
+
+            .ln {
+                stroke-dashoffset: 0
+            }
+
+            .ah {
+                opacity: 1
+            }
+
+            .pr::after {
+                transition: none
+            }
+        }
+
+        /* touch devices: tap = hover */
+        .mc:active,
+        .dc:active,
+        .gc:active,
+        .sc-card:active {
+            transform: translateY(-4px)
+        }
+
+        .sc-card:active,
+        .gc:active {
+            border-color: #FAD327;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .14), 0 24px 50px -24px rgba(250, 211, 39, .5)
+        }
+
+        .gb:active {
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 25%, transparent), 0 0 26px color-mix(in srgb, var(--c) 50%, transparent)
+        }
+
+        .mkt .mc a.more.gb:active,
+        .sv .dc a.more.dbtn:active {
+            background: var(--c);
+            color: var(--on)
+        }
+
+        .btn:active {
+            transform: scale(.97)
+        }
+
+        .nd:active .cd,
+        .nd.lit .cd {
+            transform: scale(1.1);
+            border-color: #FAD327;
+            box-shadow: 0 0 0 3px rgba(250, 211, 39, .22), 0 16px 34px -12px #000;
+            animation-play-state: paused
+        }
+
+        .sh::after {
+            left: 140%
+        }
+
+        /* mobile menu (3 lines) */
+        .hwa,
+        .mm {
+            display: none
+        }
+
+        html.nolock {
+            overflow: hidden
+        }
+
+        @media(max-width:900px) {
+            #nav {
+                display: none
+            }
+
+            .hwa {
+                display: grid;
+                place-items: center;
+                width: 44px;
+                height: 44px;
+                margin: 0 8px 0 auto;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #FAD327, #E8A107);
+                color: #02183D;
+                box-shadow: 0 8px 20px -8px rgba(232, 161, 7, .9)
+            }
+
+            .hwa svg {
+                width: 22px;
+                height: 22px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round
+            }
+
+            .burger {
+                border: 1px solid var(--line);
+                border-radius: 14px
+            }
+
+            .mm {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: calc(68px + env(safe-area-inset-top, 0px));
+                z-index: 19;
+                display: block;
+                background: rgba(1, 12, 34, .62);
+                backdrop-filter: blur(6px);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                opacity: 0;
+                transition: opacity .3s
+            }
+
+            .mm[hidden] {
+                display: none
+            }
+
+            .mm.open {
+                opacity: 1
+            }
+
+            .mp {
+                padding: 16px 16px 20px;
+                background: linear-gradient(180deg, #05204f, #02183D);
+                border-bottom: 1.5px solid rgba(250, 211, 39, .5);
+                border-radius: 0 0 26px 26px;
+                box-shadow: 0 30px 60px -20px #000, 0 0 40px -10px rgba(250, 211, 39, .35);
+                transform: translateY(-18px);
+                transition: transform .38s cubic-bezier(.2, .8, .2, 1)
+            }
+
+            .mm.open .mp {
+                transform: none
+            }
+
+            .mg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px
+            }
+
+            .mg a {
+                display: grid;
+                place-items: center;
+                min-height: 52px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, .06);
+                border: 1px solid rgba(255, 255, 255, .12);
+                color: #fff;
+                font-weight: 800;
+                font-size: .98rem
+            }
+
+            .mg a:active {
+                background: rgba(250, 211, 39, .18)
+            }
+
+            .mg a.on {
+                background: linear-gradient(135deg, #FAD327, #E8A107);
+                color: #02183D;
+                border-color: transparent
+            }
+
+            .mh2 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 20px 2px 12px;
+                padding-top: 18px;
+                border-top: 1px solid rgba(255, 255, 255, .12)
+            }
+
+            .mh2 span {
+                color: #B7C4E0;
+                font-size: .9rem;
+                font-weight: 800
+            }
+
+            .mh2 a {
+                color: #FAD327;
+                font-weight: 800;
+                font-size: .88rem
+            }
+
+            .mt {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px
+            }
+
+            .mt a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 6px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, .05);
+                border: 1px solid rgba(255, 255, 255, .1);
+                color: #fff;
+                font-size: .78rem;
+                font-weight: 700;
+                text-align: center;
+                line-height: 1.25
+            }
+
+            .mt a.on {
+                border-color: #FAD327;
+                background: rgba(250, 211, 39, .12)
+            }
+
+            .mi {
+                display: grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+                overflow: hidden;
+                color: #fff;
+                font-style: normal;
+                font-weight: 800;
+                font-size: .78rem
+            }
+
+            .mi img,
+            .mi svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain
+            }
+
+            .mi img {
+                padding: 5px
+            }
+
+            .mc2 {
+                display: grid;
+                gap: 10px;
+                margin-top: 18px;
+                padding-top: 18px;
+                border-top: 1px solid rgba(255, 255, 255, .12)
+            }
+
+            .mc2 .btn {
+                min-height: 50px;
+                gap: 8px
+            }
+
+            .mc2 .btn svg {
+                width: 18px;
+                height: 18px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round
+            }
+
+            .mc2 .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px
+            }
+
+            .mm.open .mg a,
+            .mm.open .mt a {
+                animation: rise .45s both
+            }
+
+            .mm.open .mg a:nth-child(even),
+            .mm.open .mt a:nth-child(even) {
+                animation-delay: .05s
+            }
+
+            .mm.open .mg a:nth-child(n+3),
+            .mm.open .mt a:nth-child(n+4) {
+                animation-delay: .1s
+            }
+        }
+
+        @media(min-width:901px) {
+            .mm {
+                display: none !important
+            }
+        }
+
+        /* ===== v11: typewriter, logo marquee, stats, headings ===== */
+        .cen {
+            text-align: center
+        }
+
+        .h2 {
+            font-size: clamp(1.6rem, 4.4vw, 2.5rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.18
+        }
+
+        .hbox {
+            display: inline-block;
+            padding: 16px 36px;
+            border: 1.5px solid #FAD327;
+            border-radius: 20px;
+            background: rgba(250, 211, 39, .06);
+            box-shadow: 0 0 0 5px rgba(250, 211, 39, .07), 0 0 40px -8px rgba(250, 211, 39, .55)
+        }
+
+        .hbox .h2 {
+            margin: 0
+        }
+
+        @media(max-width:560px) {
+            .hbox {
+                padding: 14px 22px
+            }
+        }
+
+        .dsh {
+            margin-bottom: 40px
+        }
+
+        /* typewriter */
+        .rot {
+            display: block
+        }
+
+        .rot b {
+            font-weight: inherit
+        }
+
+        .cur {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            margin-left: 3px;
+            vertical-align: -.15em;
+            background: var(--bright);
+            animation: blink 1s steps(1) infinite
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0
+            }
+        }
+
+        /* logo marquee */
+        .mq {
+            position: relative;
+            overflow: hidden;
+            padding: 22px 0;
+            background: #02183D;
+            border-top: 1px solid rgba(250, 211, 39, .25);
+            border-bottom: 1px solid rgba(250, 211, 39, .25)
+        }
+
+        .mq::before,
+        .mq::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 70px;
+            z-index: 2;
+            pointer-events: none
+        }
+
+        .mq::before {
+            left: 0;
+            background: linear-gradient(90deg, #02183D, transparent)
+        }
+
+        .mq::after {
+            right: 0;
+            background: linear-gradient(270deg, #02183D, transparent)
+        }
+
+        .mq-t {
+            display: flex;
+            width: max-content;
+            animation: mqm 36s linear infinite
+        }
+
+        .mq:hover .mq-t {
+            animation-play-state: paused
+        }
+
+        @keyframes mqm {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .mq-g {
+            display: flex;
+            flex: none
+        }
+
+        .mq-i {
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 200px;
+            height: 76px;
+            margin-right: 28px;
+            padding: 12px 22px;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .6)
+        }
+
+        .mq-i img {
+            display: block;
+            max-width: 100%;
+            max-height: 48px;
+            width: auto;
+            height: auto;
+            object-fit: contain
+        }
+
+        @media(max-width:560px) {
+            .mq-i {
+                width: 150px;
+                height: 62px;
+                margin-right: 18px;
+                padding: 10px 16px
+            }
+
+            .mq-i img {
+                max-height: 38px
+            }
+
+            .mq::before,
+            .mq::after {
+                width: 36px
+            }
+        }
+
+        /* stats on grid canvas */
+        .stt {
+            position: relative;
+            overflow: hidden;
+            background: #02183D
+        }
+
+        .sg4 {
+            display: grid;
+            gap: 14px;
+            margin-top: 40px;
+            grid-template-columns: 1fr 1fr
+        }
+
+        @media(min-width:900px) {
+            .sg4 {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px
+            }
+        }
+
+        .stc {
+            position: relative;
+            padding: 22px 18px 20px;
+            border: 1.5px solid rgba(250, 211, 39, .55);
+            border-radius: 22px;
+            background: linear-gradient(160deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03));
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .06), 0 0 36px -10px rgba(250, 211, 39, .45);
+            transition: transform .3s, border-color .3s, box-shadow .3s
+        }
+
+        .stc:hover,
+        .stc:active {
+            transform: translateY(-5px);
+            border-color: #FAD327;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .14), 0 24px 50px -22px rgba(250, 211, 39, .6)
+        }
+
+        .si {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: rgba(250, 211, 39, .1);
+            border: 1px solid rgba(250, 211, 39, .4);
+            color: #FAD327
+        }
+
+        .si svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .cnt {
+            display: block;
+            margin: 18px 0 6px;
+            font-size: clamp(1.9rem, 6.4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            font-variant-numeric: tabular-nums;
+            background: linear-gradient(135deg, #FAD327, #E8A107);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: #FAD327;
+            -webkit-text-fill-color: transparent
+        }
+
+        .stc h3 {
+            color: #fff;
+            font-size: 1rem
+        }
+
+        .stc p {
+            margin-top: 6px;
+            color: #DCE4F5;
+            font-size: .86rem;
+            line-height: 1.5
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .mq-t {
+                animation: none
+            }
+
+            .mq {
+                overflow-x: auto
+            }
+
+            .cur {
+                animation: none
+            }
+        }
+
+        /* ===== About sections (merged from about page) ===== */
+        .az-hero .sub {
+            font-size: 1.02rem;
+            color: #DCE4F5;
+            max-width: 620px
+        }
+
+        @media(min-width:900px) {
+            .az-hero .wrap {
+                display: grid;
+                grid-template-columns: 1.05fr .95fr;
+                gap: 48px;
+                align-items: center;
+                text-align: left
+            }
+
+            .az-hero .acts {
+                justify-content: flex-start
+            }
+
+            .az-hero .sub {
+                margin-inline: 0
+            }
+
+            .az-hero .hub {
+                margin: 0
+            }
+        }
+
+        .az i {
+            background: rgba(250, 211, 39, .14);
+            border: 1px solid rgba(250, 211, 39, .5)
+        }
+
+        .az i svg {
+            padding: 7px;
+            fill: none;
+            stroke: #FAD327;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .core .ph {
+            font-size: .78rem;
+            color: #5B6B8C
+        }
+
+        .nv {
+            background: linear-gradient(180deg, #02183D, #031f4d)
+        }
+
+        .eb {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(250, 211, 39, .5);
+            border-radius: 999px;
+            color: var(--bright);
+            font-weight: 800;
+            font-size: .85rem;
+            margin-bottom: 16px
+        }
+
+        .lead {
+            margin-top: 16px;
+            color: #DCE4F5;
+            font-size: 1.02rem
+        }
+
+        .wy {
+            display: grid;
+            gap: 36px;
+            align-items: start
+        }
+
+        @media(min-width:900px) {
+            .wy {
+                grid-template-columns: .9fr 1.1fr;
+                gap: 56px
+            }
+
+            .wy .l {
+                position: sticky;
+                top: 110px
+            }
+        }
+
+        .wc {
+            display: grid;
+            gap: 16px
+        }
+
+        @media(min-width:600px) {
+            .wc {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .gc {
+            background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03));
+            border: 1.5px solid rgba(250, 211, 39, .55);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .06);
+            transition: transform .3s, border-color .3s, box-shadow .3s
+        }
+
+        .gc:hover {
+            transform: translateY(-5px);
+            border-color: #FAD327;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .14), 0 24px 50px -24px rgba(250, 211, 39, .5)
+        }
+
+        .em {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 14px;
+            border-radius: 15px;
+            background: rgba(250, 211, 39, .1);
+            border: 1px solid rgba(250, 211, 39, .4);
+            font-size: 1.5rem;
+            color: #FAD327
+        }
+
+        .em svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .gc h3 {
+            color: #fff;
+            font-size: 1.12rem
+        }
+
+        .gc p {
+            margin-top: 8px;
+            color: #DCE4F5;
+            font-size: .94rem
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 4px 2px 14px;
+            margin: 30px 0 8px;
+            scrollbar-width: none
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none
+        }
+
+        .tab {
+            flex: none;
+            min-height: 46px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(250, 211, 39, .4);
+            background: rgba(255, 255, 255, .04);
+            color: #fff;
+            font: 700 .92rem/1 Manrope, sans-serif;
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .tab:hover {
+            border-color: #FAD327
+        }
+
+        .tab[aria-selected=true] {
+            background: linear-gradient(135deg, #FAD327, #E8A107);
+            color: #02183D;
+            border-color: transparent
+        }
+
+        .pn {
+            display: none;
+            gap: 16px
+        }
+
+        .pn.on {
+            display: grid;
+            animation: rise .5s both
+        }
+
+        @media(min-width:700px) {
+            .pn.on {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(min-width:1000px) {
+            .pn.on {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        .pr {
+            position: relative;
+            display: grid;
+            gap: 26px;
+            margin-top: 44px
+        }
+
+        .stp {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 68px 1fr;
+            gap: 18px;
+            align-items: start
+        }
+
+        .stp b {
+            display: grid;
+            place-items: center;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: #02183D;
+            border: 2px solid #FAD327;
+            color: #FAD327;
+            font-size: 1.25rem;
+            font-weight: 800;
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .1)
+        }
+
+        .stp h3 {
+            margin: 4px 0 6px;
+            color: #fff;
+            font-size: 1.25rem
+        }
+
+        .stp p {
+            color: #DCE4F5;
+            font-size: .94rem
+        }
+
+        @media(min-width:900px) {
+            .pr {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 28px
+            }
+
+            .stp {
+                display: block
+            }
+
+            .stp h3 {
+                margin: 18px 0 8px
+            }
+
+            .pr::before,
+            .pr::after {
+                content: "";
+                position: absolute;
+                left: 34px;
+                right: calc(25% - 34px);
+                top: 34px;
+                height: 2px;
+                background: rgba(250, 211, 39, .2)
+            }
+
+            .pr::after {
+                right: auto;
+                width: 0;
+                background: linear-gradient(90deg, #FAD327, #E8A107);
+                transition: width 2.2s ease
+            }
+
+            .pr.in::after {
+                width: calc(75% - 0px)
+            }
+        }
+
+        .fq {
+            display: grid;
+            gap: 12px;
+            max-width: 860px;
+            margin: 36px auto 0
+        }
+
+        .fq details {
+            border: 1.5px solid rgba(250, 211, 39, .35);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .04);
+            transition: border-color .3s, background .3s
+        }
+
+        .fq details[open] {
+            border-color: #FAD327;
+            background: rgba(250, 211, 39, .06)
+        }
+
+        .fq summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            min-height: 58px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.02rem
+        }
+
+        .fq summary::-webkit-details-marker {
+            display: none
+        }
+
+        .fq summary::after {
+            content: "+";
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid #FAD327;
+            color: #FAD327;
+            font-size: 1.3rem;
+            transition: transform .3s
+        }
+
+        .fq details[open] summary::after {
+            transform: rotate(45deg)
+        }
+
+        .fq p {
+            padding: 0 20px 20px;
+            color: #DCE4F5
+        }
+
+        .cen .lead {
+            max-width: 680px;
+            margin-inline: auto
+        }
+
+        .stage {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            aspect-ratio: 1/1;
+            margin: 40px auto 0;
+            border-radius: 32px;
+            overflow: hidden;
+            perspective: 900px;
+            background: radial-gradient(60% 60% at 50% 50%, rgba(3, 44, 107, .75), rgba(2, 24, 61, .92));
+            border: 1.5px solid rgba(250, 211, 39, .45);
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .07), 0 40px 80px -40px #000;
+            animation: rise 1s .3s both;
+            touch-action: pan-y
+        }
+
+        @media(min-width:900px) {
+            .stage {
+                margin: 0 auto
+            }
+        }
+
+        .stage canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%
+        }
+
+        .stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 70px rgba(250, 211, 39, .13);
+            pointer-events: none
+        }
+
+        .rn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border: 1px dashed rgba(250, 211, 39, .28);
+            border-radius: 50%;
+            translate: -50% -50%;
+            animation: spin 60s linear infinite;
+            pointer-events: none
+        }
+
+        .rn.r1 {
+            width: 62%;
+            height: 62%
+        }
+
+        .rn.r2 {
+            width: 88%;
+            height: 88%;
+            animation-direction: reverse;
+            animation-duration: 90s;
+            border-color: rgba(255, 255, 255, .14)
+        }
+
+        @keyframes spin {
+            to {
+                rotate: 360deg
+            }
+        }
+
+        .flogo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 34%;
+            aspect-ratio: 1;
+            border-radius: 24%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 0 1px rgba(250, 211, 39, .6), 0 0 60px rgba(250, 211, 39, .45), 0 28px 40px -12px rgba(0, 0, 0, .65);
+            will-change: transform;
+            transform: translate(-50%, -50%)
+        }
+
+        .flogo img {
+            width: 84%;
+            height: auto;
+            display: block
+        }
+
+        .story {
+            max-width: 780px;
+            margin-inline: auto;
+            display: grid;
+            gap: 22px
+        }
+
+        .story p {
+            color: #DCE4F5;
+            font-size: 1.04rem;
+            line-height: 1.85;
+            padding-left: 22px;
+            border-left: 2px solid rgba(250, 211, 39, .45)
+        }
+
+        .qt {
+            position: relative;
+            margin-top: 14px;
+            padding: 34px 30px 30px;
+            border-radius: 24px;
+            border: 1.5px solid #FAD327;
+            background: linear-gradient(160deg, rgba(250, 211, 39, .12), rgba(255, 255, 255, .03));
+            box-shadow: 0 0 0 5px rgba(250, 211, 39, .07), 0 30px 60px -30px rgba(250, 211, 39, .5);
+            color: #fff;
+            font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+            font-weight: 700;
+            line-height: 1.6
+        }
+
+        .qt::before {
+            content: "\201C";
+            position: absolute;
+            left: 22px;
+            top: -6px;
+            font-size: 4.5rem;
+            line-height: 1;
+            color: #FAD327;
+            font-weight: 800
+        }
+
+        .qt span {
+            display: block;
+            padding-top: 14px
+        }
+
+        .wdg {
+            display: grid;
+            gap: 16px;
+            margin-top: 40px
+        }
+
+        @media(min-width:700px) {
+            .wdg {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(min-width:1000px) {
+            .wdg {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .wdg .gc:last-child {
+                grid-column: 1/-1;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                column-gap: 22px;
+                align-items: center
+            }
+
+            .wdg .gc:last-child .em {
+                margin: 0;
+                grid-row: span 2
+            }
+
+            .wdg .gc:last-child p {
+                margin-top: 4px
+            }
+        }
+
+        .wyc {
+            display: grid;
+            gap: 34px
+        }
+
+        @media(min-width:900px) {
+            .wyc {
+                grid-template-columns: .85fr 1.15fr;
+                gap: 60px
+            }
+
+            .wyc .l {
+                position: sticky;
+                top: 110px;
+                align-self: start
+            }
+        }
+
+        .pi {
+            display: grid;
+            grid-template-columns: 58px 1fr;
+            gap: 14px;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .12);
+            transition: padding .35s, background .35s
+        }
+
+        .pi:hover,
+        .pi:active {
+            padding-left: 12px
+        }
+
+        .pi b {
+            color: rgba(250, 211, 39, .45);
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1.2;
+            transition: color .3s
+        }
+
+        .pi:hover b {
+            color: #FAD327
+        }
+
+        .pi h3 {
+            color: #fff;
+            font-size: 1.15rem
+        }
+
+        .pi p {
+            margin-top: 6px;
+            color: #DCE4F5;
+            font-size: .95rem
+        }
+
+        .pi.gcm {
+            margin: 12px 0;
+            padding: 22px;
+            border: 1.5px solid #FAD327;
+            border-radius: 20px;
+            background: rgba(250, 211, 39, .07);
+            box-shadow: 0 0 30px -10px rgba(250, 211, 39, .5)
+        }
+
+        .pi.gcm:hover {
+            padding-left: 22px
+        }
+
+        .pi.gcm b {
+            color: #FAD327
+        }
+
+        .jr {
+            position: relative;
+            display: grid;
+            gap: 26px;
+            margin: 48px auto 0;
+            padding-left: 70px;
+            max-width: 840px;
+            --p: 0
+        }
+
+        .jr::before,
+        .jr::after {
+            content: "";
+            position: absolute;
+            left: 23px;
+            top: 0;
+            width: 2px
+        }
+
+        .jr::before {
+            bottom: 0;
+            background: rgba(250, 211, 39, .2)
+        }
+
+        .jr::after {
+            height: calc(var(--p) * 100%);
+            background: linear-gradient(#FAD327, #E8A107);
+            box-shadow: 0 0 14px rgba(250, 211, 39, .7)
+        }
+
+        .orb {
+            position: absolute;
+            left: 14px;
+            top: calc(var(--p) * 100%);
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            border-radius: 50%;
+            background: #FAD327;
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .2), 0 0 28px 8px rgba(250, 211, 39, .7);
+            z-index: 2
+        }
+
+        .js2 {
+            position: relative;
+            padding: 22px 24px;
+            border-radius: 20px;
+            border: 1.5px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .03);
+            opacity: .45;
+            transition: opacity .5s, border-color .5s, background .5s, transform .5s
+        }
+
+        .js2::before {
+            content: attr(data-n);
+            position: absolute;
+            left: -70px;
+            top: 14px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #02183D;
+            border: 2px solid rgba(250, 211, 39, .35);
+            color: rgba(250, 211, 39, .6);
+            font-weight: 800;
+            transition: .5s
+        }
+
+        .js2.on {
+            opacity: 1;
+            border-color: rgba(250, 211, 39, .6);
+            background: rgba(250, 211, 39, .06);
+            transform: translateX(4px)
+        }
+
+        .js2.on::before {
+            border-color: #FAD327;
+            color: #FAD327;
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .12)
+        }
+
+        .js2 h3 {
+            color: #fff;
+            font-size: 1.2rem
+        }
+
+        .js2 p {
+            margin-top: 8px;
+            color: #DCE4F5;
+            font-size: .95rem
+        }
+
+        .vm {
+            display: grid;
+            gap: 22px
+        }
+
+        @media(min-width:900px) {
+            .vm {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .vc {
+            position: relative;
+            overflow: hidden;
+            padding: 36px 30px;
+            border-radius: 28px;
+            border: 1.5px solid rgba(250, 211, 39, .6);
+            background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .02));
+            box-shadow: 0 0 0 5px rgba(250, 211, 39, .06), 0 34px 70px -34px rgba(250, 211, 39, .45);
+            transition: transform .35s, border-color .35s
+        }
+
+        .vc:hover {
+            transform: translateY(-6px);
+            border-color: #FAD327
+        }
+
+        .vc .em {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            margin-bottom: 20px
+        }
+
+        .vc .em svg {
+            width: 32px;
+            height: 32px
+        }
+
+        .vc .h2 {
+            font-size: clamp(1.4rem, 3.4vw, 2rem)
+        }
+
+        .vc .lead {
+            font-size: 1rem;
+            line-height: 1.8
+        }
+
+        .vc::after {
+            content: "";
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(250, 211, 39, .18), transparent 70%);
+            pointer-events: none
+        }
+
+        .sub2 {
+            margin-top: 10px;
+            color: #FAD327;
+            font-weight: 800;
+            font-size: 1.05rem
+        }
+
+        .fq {
+            counter-reset: q
+        }
+
+        .fq details {
+            counter-increment: q
+        }
+
+        .fq summary::before {
+            content: counter(q, decimal-leading-zero);
+            flex: none;
+            color: #FAD327;
+            font-weight: 800;
+            margin-right: 4px
+        }
+
+        .fq summary {
+            justify-content: flex-start
+        }
+
+        .fq summary::after {
+            margin-left: auto
+        }
+
+        .gc:active {
+            transform: translateY(-4px);
+            border-color: #FAD327
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .rn {
+                animation: none
+            }
+
+            .js2 {
+                opacity: 1
+            }
+        }
+
+        .stage {
+            aspect-ratio: auto;
+            height: 300px;
+            margin: 30px auto 0;
+            border: 0;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+            overflow: visible;
+            perspective: 900px
+        }
+
+        .stage::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 280px;
+            height: 280px;
+            translate: -50% -50%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(250, 211, 39, .3), transparent 68%);
+            filter: blur(10px)
+        }
+
+        .stage::after {
+            display: none
+        }
+
+        .flogo {
+            width: 200px;
+            animation: fl4 7s ease-in-out infinite
+        }
+
+        @keyframes fl4 {
+
+            0%,
+            100% {
+                translate: 0 0;
+                rotate: -1.5deg
+            }
+
+            50% {
+                translate: 6px -12px;
+                rotate: 1.5deg
+            }
+        }
+
+        @media(max-width:560px) {
+            .stage {
+                height: 230px
+            }
+
+            .flogo {
+                width: 160px
+            }
+
+            .stage::before {
+                width: 220px;
+                height: 220px
+            }
+        }
+
+        .bt {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0;
+            max-width: 780px;
+            margin-inline: auto
+        }
+
+        .bt li {
+            position: relative;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 18px;
+            padding-bottom: 30px;
+            opacity: 0;
+            transform: translateX(-24px);
+            transition: opacity .7s, transform .7s
+        }
+
+        .bt li:last-child {
+            padding-bottom: 0
+        }
+
+        .bt li::before {
+            content: "";
+            position: absolute;
+            left: 21px;
+            top: 44px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(#FAD327, rgba(250, 211, 39, .08));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform .8s .35s
+        }
+
+        .bt li:last-child::before {
+            display: none
+        }
+
+        .bt li.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .bt li.in::before {
+            transform: scaleY(1)
+        }
+
+        .st {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(250, 211, 39, .1);
+            border: 1.5px solid rgba(250, 211, 39, .5);
+            transform: scale(0) rotate(-90deg);
+            transition: transform .7s cubic-bezier(.2, 1.4, .3, 1) .1s, box-shadow .7s
+        }
+
+        .st svg {
+            width: 22px;
+            height: 22px;
+            fill: #FAD327
+        }
+
+        .bt li.in .st {
+            transform: none;
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .1), 0 0 26px rgba(250, 211, 39, .55)
+        }
+
+        .bt span {
+            align-self: center;
+            color: #fff;
+            font-size: clamp(1.02rem, 2.4vw, 1.2rem);
+            font-weight: 600;
+            line-height: 1.6
+        }
+
+        .stk {
+            display: grid;
+            gap: 26px;
+            padding-bottom: 30px
+        }
+
+        .sk {
+            position: sticky;
+            top: calc(96px + var(--i) * 18px);
+            transform-origin: top center;
+            border: 1.5px solid #FAD327;
+            border-radius: 24px;
+            padding: 26px;
+            background: linear-gradient(160deg, #0D2B63, #061b45);
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .07), 0 0 34px -6px rgba(250, 211, 39, .45), 0 30px 50px -30px #000;
+            transition: box-shadow .3s
+        }
+
+        .sk:hover {
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .16), 0 0 50px -4px rgba(250, 211, 39, .65), 0 30px 50px -30px #000
+        }
+
+        .sk .no {
+            position: absolute;
+            right: 22px;
+            top: 10px;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(250, 211, 39, .1)
+        }
+
+        .hd2 {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-right: 50px
+        }
+
+        .hd2 .em {
+            margin: 0;
+            flex: none
+        }
+
+        .sk h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            line-height: 1.3
+        }
+
+        .sk ul {
+            list-style: none;
+            margin: 18px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 11px
+        }
+
+        .sk li {
+            position: relative;
+            padding-left: 28px;
+            color: #EEF3FF;
+            font-size: .97rem;
+            line-height: 1.65;
+            font-weight: 500
+        }
+
+        .sk li::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: .6em;
+            width: 9px;
+            height: 9px;
+            transform: rotate(45deg);
+            background: #FAD327;
+            box-shadow: 0 0 10px rgba(250, 211, 39, .85)
+        }
+
+        .jr::before,
+        .jr::after {
+            display: none
+        }
+
+        .sg2 {
+            position: absolute;
+            left: 23px;
+            width: 2px;
+            background: rgba(250, 211, 39, .2)
+        }
+
+        .sg2 b {
+            display: block;
+            width: 100%;
+            height: 100%;
+            transform-origin: top;
+            transform: scaleY(0);
+            background: linear-gradient(#FAD327, #E8A107);
+            box-shadow: 0 0 12px rgba(250, 211, 39, .7)
+        }
+
+        .orb {
+            top: 0;
+            opacity: 0;
+            transition: opacity .3s
+        }
+
+        .js2::before {
+            z-index: 3
+        }
+
+        .vh {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px
+        }
+
+        .vh .em {
+            margin: 0;
+            flex: none
+        }
+
+        .eb.vb {
+            margin: 0;
+            padding: 10px 26px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            border: 1.5px solid #FAD327;
+            background: rgba(250, 211, 39, .06);
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .07), 0 0 28px -4px rgba(250, 211, 39, .6)
+        }
+
+        .vc {
+            border-width: 2px;
+            box-shadow: 0 0 0 6px rgba(250, 211, 39, .07), 0 0 50px -8px rgba(250, 211, 39, .5), 0 34px 70px -34px rgba(250, 211, 39, .45)
+        }
+
+        .vc .lead {
+            font-size: 1.06rem;
+            color: #F1F5FF;
+            font-weight: 500
+        }
+
+        .fq details {
+            background: rgba(3, 22, 58, .94)
+        }
+
+        .fq details[open] {
+            background: rgba(5, 30, 75, .98)
+        }
+
+        .fq summary {
+            font-size: 1.08rem
+        }
+
+        .fq p {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.02rem;
+            line-height: 1.8
+        }
+
+        .fq details[open] p {
+            animation: rise .4s both
+        }
+
+        .ask {
+            border-style: solid !important;
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .08), 0 0 36px -8px rgba(250, 211, 39, .55)
+        }
+
+        .ask summary::before {
+            content: "?" !important;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #FAD327;
+            color: #02183D;
+            margin-right: 4px
+        }
+
+        .af {
+            padding: 6px 20px 24px
+        }
+
+        .ap {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .ap i {
+            height: 5px;
+            flex: 1;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .18);
+            transition: background .4s
+        }
+
+        .ap i.on {
+            background: #FAD327;
+            box-shadow: 0 0 10px rgba(250, 211, 39, .7)
+        }
+
+        .sl {
+            overflow: hidden
+        }
+
+        .sd {
+            display: flex;
+            transition: transform .5s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        .fs {
+            flex: 0 0 100%;
+            padding: 2px 2px 4px
+        }
+
+        .fs label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem
+        }
+
+        .fs input,
+        .fs textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1.5px solid rgba(250, 211, 39, .55);
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            font: 600 16px Manrope, sans-serif
+        }
+
+        .fs input::placeholder,
+        .fs textarea::placeholder {
+            color: #B7C4E0
+        }
+
+        .fs input:focus,
+        .fs textarea:focus {
+            outline: none;
+            border-color: #FAD327;
+            box-shadow: 0 0 0 3px rgba(250, 211, 39, .25)
+        }
+
+        .er {
+            display: block;
+            min-height: 22px;
+            margin-top: 6px;
+            color: #FFB4A8;
+            font-weight: 700;
+            font-size: .9rem
+        }
+
+        .nt {
+            color: #DCE4F5;
+            font-size: .85rem;
+            margin-bottom: 6px
+        }
+
+        .ab {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px
+        }
+
+        .ab .btn {
+            flex: 1;
+            min-height: 48px
+        }
+
+        .hp {
+            position: absolute;
+            left: -9999px
+        }
+
+        .am {
+            padding: 0 !important;
+            margin-top: 6px;
+            color: #FAD327 !important;
+            font-weight: 800 !important
+        }
+
+        .am:not(:empty) {
+            padding: 14px !important
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .flogo {
+                animation: none
+            }
+
+            .bt li {
+                opacity: 1;
+                transform: none
+            }
+
+            .bt li::before {
+                transform: none
+            }
+
+            .st {
+                transform: none
+            }
+        }
+
+        .eb.md {
+            font-size: 1.15rem;
+            padding: 9px 24px;
+            margin-bottom: 18px;
+            border: 1.5px solid #FAD327;
+            background: rgba(250, 211, 39, .06);
+            box-shadow: 0 0 0 4px rgba(250, 211, 39, .07), 0 0 26px -4px rgba(250, 211, 39, .55)
+        }
+
+        .wyc .l {
+            text-align: center
+        }
+
+        .hbox+.sub2 {
+            margin-top: 18px
+        }
+
+        .fq {
+            grid-template-columns: minmax(0, 1fr)
+        }
+
+        .fq details,
+        .sl,
+        .fs,
+        .af {
+            min-width: 0
+        }
+
+        .fq summary {
+            overflow-wrap: anywhere
+        }
+
+        .sd {
+            align-items: flex-start;
+            width: 100%
+        }
+
+        .sl {
+            transition: height .4s ease
+        }
+
+        @media(max-width:560px) {
+            .hbox {
+                padding: 14px 22px
+            }
+
+            .af {
+                padding: 6px 14px 20px
+            }
+        }
+
+        .az-hero h2 {
+            font-size: clamp(2rem, 6.4vw, 3.7rem);
+            font-weight: 800
+        }
+
+        /* ===== footer v2 ===== */
+        footer.ft {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(60% 50% at 15% 0%, rgba(3, 44, 107, .55), transparent 70%), radial-gradient(40% 40% at 92% 100%, rgba(232, 161, 7, .1), transparent 70%), #011230;
+            border-top: 1px solid rgba(250, 211, 39, .3);
+            padding: 56px 0 calc(110px + env(safe-area-inset-bottom, 0px));
+            color: #DCE4F5
+        }
+
+        .ft-g {
+            display: grid;
+            gap: 40px
+        }
+
+        @media(min-width:900px) {
+            .ft-g {
+                grid-template-columns: 1.1fr 1fr 1fr;
+                gap: 48px;
+                align-items: start
+            }
+
+            footer.ft {
+                padding-bottom: 40px
+            }
+        }
+
+        .ft-logo {
+            display: grid;
+            place-items: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(250, 211, 39, .5), 0 0 40px rgba(250, 211, 39, .25)
+        }
+
+        .ft-logo img {
+            display: block;
+            width: 80%;
+            height: auto
+        }
+
+        .ft-name {
+            margin-top: 18px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.25rem
+        }
+
+        .ft-tag {
+            margin-top: 10px;
+            max-width: 340px;
+            color: #B7C4E0;
+            font-size: .98rem;
+            line-height: 1.6
+        }
+
+        .ft-line {
+            display: block;
+            width: 56px;
+            height: 2px;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #FAD327, transparent)
+        }
+
+        .ft-c h4 {
+            margin: 0 0 18px;
+            color: #FAD327;
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-transform: uppercase
+        }
+
+        .ft-r {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+            padding: 4px 0;
+            color: inherit;
+            transition: transform .25s
+        }
+
+        .ft-r:hover {
+            transform: translateX(4px);
+            color: inherit
+        }
+
+        .ft-r .ic {
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            color: #FAD327;
+            border: 1px solid rgba(250, 211, 39, .35);
+            background: rgba(250, 211, 39, .08)
+        }
+
+        .ft-r .ic svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ft-r.wa .ic {
+            color: #25D366;
+            border-color: rgba(37, 211, 102, .4);
+            background: rgba(37, 211, 102, .08)
+        }
+
+        .ft-r small {
+            display: block;
+            color: #9FB0D0;
+            font-size: .74rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-weight: 700
+        }
+
+        .ft-r b {
+            display: block;
+            color: #fff;
+            font-weight: 700;
+            font-size: .98rem;
+            line-height: 1.4;
+            overflow-wrap: anywhere
+        }
+
+        .ft-r em {
+            display: block;
+            margin-top: 2px;
+            color: #FAD327;
+            font-style: normal;
+            font-size: .86rem;
+            font-weight: 700
+        }
+
+        .ft-l {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: start
+        }
+
+        .fd {
+            border: 1.5px solid rgba(250, 211, 39, .4);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .04);
+            transition: border-color .3s, background .3s
+        }
+
+        .fd[open] {
+            border-color: #FAD327;
+            background: rgba(250, 211, 39, .06)
+        }
+
+        .fd summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            min-height: 52px;
+            padding: 0 14px;
+            color: #fff;
+            font-weight: 800;
+            font-size: .95rem
+        }
+
+        .fd summary::-webkit-details-marker {
+            display: none
+        }
+
+        .fd summary::after {
+            content: "";
+            flex: none;
+            width: 9px;
+            height: 9px;
+            border-right: 2px solid #FAD327;
+            border-bottom: 2px solid #FAD327;
+            transform: rotate(45deg) translateY(-2px);
+            transition: transform .3s
+        }
+
+        .fd[open] summary::after {
+            transform: rotate(-135deg) translateY(-2px)
+        }
+
+        .fd ul {
+            list-style: none;
+            margin: 0;
+            padding: 2px 14px 14px;
+            display: grid;
+            gap: 8px
+        }
+
+        .fd li a {
+            display: block;
+            padding: 4px 0;
+            color: #DCE4F5;
+            font-size: .9rem;
+            line-height: 1.35
+        }
+
+        .fd li a:hover {
+            color: #FAD327
+        }
+
+        .ft-bt {
+            margin-top: 44px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            text-align: center
+        }
+
+        .ft-bt p {
+            margin: 0;
+            color: #9FB0D0;
+            font-size: .88rem
+        }
+
+        .ft-bt .ft-mk {
+            margin-top: 8px;
+            color: #DCE4F5;
+            font-size: .92rem
+        }
+
+        .ft-mk a {
+            color: #FAD327;
+            font-weight: 800;
+            border-bottom: 1.5px solid rgba(250, 211, 39, .6);
+            transition: text-shadow .3s
+        }
+
+        .ft-mk a:hover {
+            text-shadow: 0 0 14px rgba(250, 211, 39, .8)
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+<link rel="canonical" href="https://marwadiecomwala.in/main.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marwadi Ecom Wala">
+<meta property="og:title" content="Home Page | Marwadi Ecom Wala">
+<meta property="og:description" content="PASTE_SAME_TEXT_AS_META_DESCRIPTION">
+<meta property="og:url" content="https://marwadiecomwala.in/main.html">
+<meta property="og:image" content="https://marwadiecomwala.in/images/favicon.png">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body>
+    <header id="top">
+        <div class="wrap bar">
+            <a class="logo" href="#top" aria-label="Marwadi Ecom Wala home"><img
+                    src="images/logo.png"
+                    alt="Marwadi Ecom Wala" width="114" height="38"></a>
+            <a class="hwa" aria-label="WhatsApp" data-wa="Hi, I’d like to book a free consultation." href="#"><svg
+                    viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+                </svg></a><button class="burger" aria-label="Menu" aria-expanded="false"
+                aria-controls="mm"><i></i></button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#marketplaces">Marketplaces</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a class="cta-n" data-wa="Hi, I’d like to book a free consultation." href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mm" id="mm" hidden>
+        <div class="mp">
+            <div class="mg"><a href="#top">Home</a><a href="#about">About Us</a><a href="#services">Services</a><a
+                    href="#why-choose-us">Why Choose Us</a><a href="#marketplaces">Marketplaces</a><a
+                    href="#faqs">FAQs</a></div>
+            <div class="mh2"><span>Popular Marketplaces</span><a href="#marketplaces">View all</a></div>
+            <div class="mt"><a href="amazon.html"><span class="mi" style="background:#fff"><img src="images/amazon.png"
+                            alt="" width="64" height="64"></span>Amazon</a><a href="flipkart.html"><span class="mi"
+                        style="background:#fff"><img src="images/flipkart.png" alt="" width="64"
+                            height="64"></span>Flipkart</a><a href="meesho.html"><span class="mi"
+                        style="background:#fff"><img src="images/meesho.png" alt="" width="64"
+                            height="64"></span>Meesho</a><a href="shopify-dropshipping.html"><span class="mi"
+                        style="background:#fff"><img src="images/shopify.png" alt="" width="64"
+                            height="64"></span>Shopify</a><a href="amazon-dropshipping.html"><span class="mi"
+                        style="background:#fff"><img src="images/d.png" alt="" width="64"
+                            height="64"></span>Dropshipping</a><a href="web-development.html"><span class="mi"
+                        style="background:#fff"><img src="images/web-development.png" alt="" width="64"
+                            height="64"></span>Web
+                    Development</a></div>
+            <div class="mc2"><a class="btn g" data-wa="Hi, I’d like to book a free consultation." href="#">Book Your
+                    Free Consultation</a>
+                <div class="row"><a class="btn l" href="tel:+919039975079"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                        </svg>Call Now</a><a class="btn l" data-wa="Hi, I’d like to book a free consultation."
+                        href="#"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+                        </svg>WhatsApp</a></div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero dk">
+            <div class="gridbg"></div>
+            <div class="wrap">
+                <div class="hc">
+                    <span class="perm">Build. Grow. Scale.</span>
+                    <h1>We Don’t Just Build Marketplace Presence. We Build Businesses That Grow.</h1>
+                    <div class="rot" aria-live="off"><b id="tw" class="tw">Transforming Products Into Growing Online
+                            Brands.</b><i class="cur" aria-hidden="true"></i></div>
+                    <p class="sub">From marketplace onboarding to long-term business growth, we combine strategy,
+                        execution, and continuous optimization to help businesses grow with confidence.</p>
+                    <div class="acts"><a class="btn g" data-wa="Hi, I’d like to book a free consultation." href="#">Book
+                            Your Free Consultation</a><a class="btn l" href="#services">Explore Our Services</a></div>
+                </div>
+                <div class="hub" id="hub">
+                    <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <circle class="rg" cx="50" cy="50" r="30" />
+                        <circle class="rg" cx="50" cy="50" r="44" />
+                        <g class="sg">
+                            <path class="sp" d="M50 50L50 11" />
+                            <path class="pl" pathLength="100" d="M50 50L50 11" />
+                        </g>
+                        <g class="sg">
+                            <path class="sp" d="M50 50L82 30" />
+                            <path class="pl" pathLength="100" style="animation-delay:-.6s" d="M50 50L82 30" />
+                        </g>
+                        <g class="sg">
+                            <path class="sp" d="M50 50L82 70" />
+                            <path class="pl" pathLength="100" style="animation-delay:-1.3s" d="M50 50L82 70" />
+                        </g>
+                        <g class="sg">
+                            <path class="sp" d="M50 50L50 89" />
+                            <path class="pl" pathLength="100" style="animation-delay:-1.9s" d="M50 50L50 89" />
+                        </g>
+                        <g class="sg">
+                            <path class="sp" d="M50 50L18 70" />
+                            <path class="pl" pathLength="100" style="animation-delay:-2.5s" d="M50 50L18 70" />
+                        </g>
+                        <g class="sg">
+                            <path class="sp" d="M50 50L18 30" />
+                            <path class="pl" pathLength="100" style="animation-delay:-3.1s" d="M50 50L18 30" />
+                        </g>
+                    </svg>
+                    <div class="core"><img
+                            src="images/logo-emblem.png"
+                            alt="Marwadi Ecom Wala"></div>
+                    <a class="nd" style="left:50%;top:11%;--c:#FF9900" href="/amazon"><span class="cd"><i
+                                class="lg"><img src="images/amazon.png" alt="Amazon" width="256"
+                                    height="256"></i><span><b>Amazon</b><small>Seller Services</small></span></span></a>
+                    <a class="nd" style="left:82%;top:30%;--c:#2874F0" href="/flipkart"><span class="cd"><i
+                                class="lg"><img src="images/flipkart.png" alt="Flipkart" width="256"
+                                    height="256"></i><span><b>Flipkart</b><small>Seller
+                                    Services</small></span></span></a>
+                    <a class="nd" style="left:82%;top:70%;--c:#9F2089" href="/meesho"><span class="cd"><i
+                                class="lg"><img src="images/meesho.png" alt="Meesho" width="256"
+                                    height="256"></i><span><b>Meesho</b><small>Seller Services</small></span></span></a>
+                    <a class="nd" style="left:50%;top:89%;--c:#95BF47" href="/shopify-dropshipping"><span class="cd"><i
+                                class="lg"><img src="images/shopify.png" alt="Shopify" width="256"
+                                    height="256"></i><span><b>Shopify</b><small>Your Own Store</small></span></span></a>
+                    <a class="nd" style="left:18%;top:70%;--c:#7C5CFF" href="/web-development"><span
+                            class="cd"><i>&lt;/&gt;</i><span><b>Web Development</b><small>Websites &amp;
+                                    Stores</small></span></span></a>
+                    <a class="nd" style="left:18%;top:30%;--c:#E31E24" href="/indiamart"><span class="cd"><i
+                                class="lg"><img src="images/indiamart.png" alt="IndiaMart" width="256"
+                                    height="256"></i><span><b>IndiaMART</b><small>B2B Listings</small></span></span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mq" aria-label="Marketplaces we work with">
+            <div class="mq-t">
+                <div class="mq-g">
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="Amazon" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="Flipkart" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="Shopify" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="Amazon" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="Flipkart" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="Shopify" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="Amazon" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="Flipkart" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="Shopify" loading="lazy"></div>
+                </div>
+                <div class="mq-g" aria-hidden="true">
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/amazon-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/flipkart-logo.png" alt="" loading="lazy"></div>
+                    <div class="mq-i"><img src="images/shopify-logo.png" alt="" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec stt dk" id="stats">
+            <div class="gridbg"></div>
+            <div class="wrap">
+                <div class="cen">
+                    <div class="hbox">
+                        <h2 class="h2">Numbers That Reflect Our Work.</h2>
+                    </div>
+                </div>
+                <div class="sg4">
+                    <article class="stc rv">
+                        <div class="si"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg></div><b class="cnt" data-to="250" data-suf="+">250+</b>
+                        <h3>Clients Served</h3>
+                        <p>Businesses we have supported on online marketplaces.</p>
+                    </article>
+                    <article class="stc rv">
+                        <div class="si"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9.5 12 3l9 6.5V21H3z" />
+                                <path d="M9 21v-7h6v7" />
+                            </svg></div><b class="cnt" data-to="500" data-suf="+">500+</b>
+                        <h3>Accounts Managed</h3>
+                        <p>Marketplace accounts handled with care, day to day.</p>
+                    </article>
+                    <article class="stc rv">
+                        <div class="si"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                            </svg></div><b class="cnt" data-to="25" data-suf="+">25+</b>
+                        <h3>Marketplace Experts</h3>
+                        <p>Specialists across Amazon, Flipkart and Meesho.</p>
+                    </article>
+                    <article class="stc rv">
+                        <div class="si"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="18" height="18" x="3" y="4" rx="2" />
+                                <path d="M16 2v4" />
+                                <path d="M8 2v4" />
+                                <path d="M3 10h18" />
+                            </svg></div><b class="cnt" data-to="5" data-suf="+">5+</b>
+                        <h3>Years Of Experience</h3>
+                        <p>Of hands-on ecommerce marketplace work.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="sec sv dk" id="services">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="hd">
+                    <h2>The Building Blocks That Turn Businesses Into Successful Online Brands.</h2>
+                    <p>Success on online marketplaces isn’t built by a single service. It’s achieved through the right
+                        combination of strategy, execution, and continuous support.</p>
+                </div>
+                <div class="track" id="trk" tabindex="0" aria-label="Services, swipe to see more">
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="8" height="4" x="8" y="2" rx="1" />
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                <path d="m9 14 2 2 4-4" />
+                            </svg></div>
+                        <h3>Marketplace Onboarding</h3><b>Every successful marketplace journey starts with the right
+                            foundation.</b>
+                        <ul class="bl">
+                            <li>Document verification and account setup</li>
+                            <li>Meeting marketplace requirements</li>
+                            <li>Every step of onboarding handled for you</li>
+                            <li>Ready to start selling without unnecessary complications</li>
+                        </ul>
+                    </article>
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
+                                <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+                            </svg></div>
+                        <h3>Product Listing &amp; Optimization</h3><b>Products don’t sell because they’re listed. They
+                            sell because they’re presented well.</b>
+                        <ul class="bl">
+                            <li>Listings that help customers understand your products better</li>
+                            <li>Improved discoverability</li>
+                            <li>Increased chances of conversion</li>
+                        </ul>
+                    </article>
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="7" height="7" x="3" y="3" rx="1" />
+                                <rect width="7" height="7" x="14" y="3" rx="1" />
+                                <rect width="7" height="7" x="14" y="14" rx="1" />
+                                <rect width="7" height="7" x="3" y="14" rx="1" />
+                            </svg></div>
+                        <h3>Catalog Management</h3><b>An organized catalog creates a better buying experience.</b>
+                        <ul class="bl">
+                            <li>Easier for customers to explore your products</li>
+                            <li>Store kept accurate, consistent, and ready to grow</li>
+                        </ul>
+                    </article>
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <line x1="21" x2="14" y1="4" y2="4" />
+                                <line x1="10" x2="3" y1="4" y2="4" />
+                                <line x1="21" x2="12" y1="12" y2="12" />
+                                <line x1="8" x2="3" y1="12" y2="12" />
+                                <line x1="21" x2="16" y1="20" y2="20" />
+                                <line x1="12" x2="3" y1="20" y2="20" />
+                                <line x1="14" x2="14" y1="2" y2="6" />
+                                <line x1="8" x2="8" y1="10" y2="14" />
+                                <line x1="16" x2="16" y1="18" y2="22" />
+                            </svg></div>
+                        <h3>Account Management</h3><b>Consistent growth begins with consistent management.</b>
+                        <ul class="bl">
+                            <li>Daily operations handled</li>
+                            <li>Ongoing improvements</li>
+                            <li>Marketplace business running smoothly and efficiently</li>
+                        </ul>
+                    </article>
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m3 11 18-5v12L3 14v-3z" />
+                                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+                            </svg></div>
+                        <h3>Marketplace Advertising</h3><b>Visibility creates opportunities. Strategy creates
+                            results.</b>
+                        <ul class="bl">
+                            <li>Reach the right audience</li>
+                            <li>Improve visibility</li>
+                            <li>Support consistent business growth</li>
+                        </ul>
+                    </article>
+                    <article class="sc-card">
+                        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg></div>
+                        <h3>Account Health Management</h3><b>A healthy account is the backbone of sustainable
+                            marketplace growth.</b>
+                        <ul class="bl">
+                            <li>Maintained account performance</li>
+                            <li>Fewer disruptions</li>
+                            <li>Stronger marketplace trust</li>
+                            <li>Long-term business success</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="ctl"><button class="arr" data-d="-1" aria-label="Previous">&#8592;</button>
+                    <div class="prog"><i id="pg"></i></div><button class="arr" data-d="1"
+                        aria-label="Next">&#8594;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec mkt dk" id="marketplaces">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="hd">
+                    <h2>Choose The Right Marketplace For Your Business.</h2>
+                    <p>Every marketplace offers unique opportunities. Explore our dedicated services to find the
+                        platform that best matches your products, business goals, and growth plans.</p>
+                </div>
+                <div class="grid3">
+                    <article class="mc rv" style="--c:#FAD327;--tx:#FAD327;--on:#02183D">
+                        <div class="mh">
+                            <div class="mlogo">
+                                <img src="images/amazon.png" alt="Amazon" width="256" height="256">
+                            </div>
+                            <h3>Amazon</h3>
+                        </div>
+                        <div class="mb2"><span class="badge gb">India’s Largest Ecommerce Marketplace</span>
+                            <p>Launch your business on <strong>India’s largest ecommerce marketplace</strong> with
+                                <strong>complete support</strong>—from <strong>seller onboarding</strong> and
+                                <strong>optimized product listings</strong> to <strong>advertising</strong>,
+                                <strong>account management</strong>, and <strong>long-term business growth</strong>.
+                            </p>
+                            <ul class="hl">
+                                <li><em>⭐</em>Brand Building</li>
+                                <li><em>🚚</em>FBA Support</li>
+                                <li><em>🛍️</em>Trusted Marketplace</li>
+                            </ul>
+                            <a class="more gb" href="/amazon.html">Explore Dedicated Services</a>
+                        </div>
+                    </article>
+                    <article class="mc rv" style="--c:#2874F0;--tx:#fff;--on:#fff">
+                        <div class="mh">
+                            <div class="mlogo">
+                                <img src="images/flipkart_logo_69x69.png" alt="Flipkart" width="256" height="256"
+                                    style="padding:0px">
+                            </div>
+                            <h3>Flipkart</h3>
+                        </div>
+                        <div class="mb2"><span class="badge gb">One Of India’s Leading Online Marketplaces</span>
+                            <p>Build a stronger presence on Flipkart with <strong>end-to-end marketplace
+                                    solutions</strong>, including <strong>seller onboarding</strong>, <strong>catalog
+                                    optimization</strong>, <strong>advertising</strong>, and <strong>dedicated
+                                    support</strong> designed for <strong>sustainable business growth</strong>.</p>
+                            <ul class="hl">
+                                <li><em>🎉</em>Festive Sale Boost</li>
+                                <li><em>📈</em>High Order Potential</li>
+                                <li><em>📦</em>Fulfilment Support</li>
+                            </ul>
+                            <a class="more gb" href="/flipkart.html">Explore Dedicated Services</a>
+                        </div>
+                    </article>
+                    <article class="mc rv" style="--c:#9F2089;--tx:#fff;--on:#fff">
+                        <div class="mh">
+                            <div class="mlogo">
+                                <img src="images/meesho.png" alt="Meesho" width="256" height="256" style="padding:0px">
+                            </div>
+                            <h3>Meesho</h3>
+                        </div>
+                        <div class="mb2"><span class="badge gb">India’s Fastest Growing Marketplace with 0%
+                                Commission</span>
+                            <p>Start selling confidently on Meesho with <strong>complete marketplace support</strong>,
+                                from <strong>seller onboarding</strong> and <strong>product optimization</strong> to
+                                <strong>account management</strong> and <strong>growth strategies</strong> tailored for
+                                <strong>long-term success</strong>.
+                            </p>
+                            <ul class="hl">
+                                <li><em>💰</em>0% Commission</li>
+                                <li><em>💸</em>Low Investment</li>
+                                <li><em>🚀</em>Fastest Growth</li>
+                            </ul>
+                            <a class="more gb" href="/meesho.html">Explore Dedicated Services</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec sv dk">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="cen dsh">
+                    <div class="hbox">
+                        <h2 class="h2">Dropshipping Services</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap grid2">
+                <article class="dc rv" style="--c:#FAD327;--b:#E8A107;--c2:#AE6D08;--on:#02183D">
+                    <div class="dlogo">
+                        <img src="images/amazon-logo.png" alt="Amazon" width="720" height="240">
+
+                    </div>
+                    <div class="db">
+                        <h3 class="sr">Amazon Dropshipping</h3><span class="dtag">Sell Without Stocking Products On One
+                            Of The World’s Largest Ecommerce Marketplace</span>
+                        <p>Start your Amazon dropshipping business with a <strong>low-investment model</strong> that
+                            eliminates the need to <strong>purchase inventory</strong> or manage <strong>product
+                                packing</strong>. We provide <strong>complete setup services</strong> to help you launch
+                            and build a <strong>scalable ecommerce business</strong>.</p>
+                        <ul class="dg">
+                            <li>💰 Low Initial Investment</li>
+                            <li>📦 No Inventory Purchase</li>
+                            <li>📤 No Product Packing</li>
+                        </ul>
+                        <a class="more dbtn" href="/amazon-dropshipping.html">Explore Dedicated Services</a>
+                    </div>
+                </article>
+                <article class="dc rv" style="--c:#95BF47;--c2:#5E8E3E;--on:#02183D">
+                    <div class="dlogo">
+                        <img src="images/shopify-logo.png" alt="Shopify" width="720" height="240">
+                    </div>
+                    <div class="db">
+                        <h3 class="sr">Shopify Dropshipping</h3><span class="dtag">Build A Brand. Not Just A
+                            Store.</span>
+                        <p>Launch your own Shopify dropshipping business with <strong>complete control</strong> over
+                            your <strong>brand, products, and customer experience</strong>. We help you build a
+                            <strong>scalable ecommerce business</strong> with <strong>low upfront investment</strong>.
+                        </p>
+                        <ul class="dg">
+                            <li>💰 Low Initial Investment</li>
+                            <li>📦 No Inventory Purchase Required</li>
+                            <li>👑 Your Brand, Your Store</li>
+                        </ul>
+                        <a class="more dbtn" href="/shopify-dropshipping.html">Explore Dedicated Services</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="hero dk az-hero" id="about">
+            <div class="gridbg"></div>
+            <div class="wrap">
+                <div><span class="perm">About Marwadi Ecom Wala</span>
+                    <h2>We Don’t Just Build Marketplace Presence. We Build Businesses That Grow.</h2>
+                    <p class="sub" style="margin-top:22px">Every product begins with an idea. But turning that idea into
+                        a successful business takes far more than simply listing it on an online marketplace. It
+                        requires understanding your customers, presenting your products the right way, and making
+                        decisions that help your business grow over time.</p>
+                    <div class="acts"><a class="btn g" data-wa="Hi, I’d like to book a free consultation." href="#">Book
+                            Your Free Consultation</a></div>
+                </div>
+                <div class="stage" aria-hidden="true">
+                    <div class="flogo"><img
+                            src="images/logo-emblem.png"
+                            alt=""></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec nv dk">
+            <div class="wrap">
+                <div class="story">
+                    <ul class="bt">
+                        <li><i class="st"><svg viewBox="0 0 24 24">
+                                    <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+                                </svg></i><span>At Marwadi Ecom Wala, we work with Direct-to-Consumer (D2C) brand
+                                owners, manufacturers, wholesalers, and retailers.</span></li>
+                        <li><i class="st"><svg viewBox="0 0 24 24">
+                                    <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+                                </svg></i><span>Ready to launch new products, expand into online marketplaces, or build
+                                a stronger online business.</span></li>
+                        <li><i class="st"><svg viewBox="0 0 24 24">
+                                    <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+                                </svg></i><span>We believe every business has its own story.</span></li>
+                        <li><i class="st"><svg viewBox="0 0 24 24">
+                                    <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+                                </svg></i><span>Every product has its own value.</span></li>
+                        <li><i class="st"><svg viewBox="0 0 24 24">
+                                    <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+                                </svg></i><span>Every marketplace journey deserves an approach that’s built around its
+                                unique goals.</span></li>
+                    </ul>
+                    <p>Over the years, our marketplace experience has helped one of our seller partners achieve over ₹40
+                        lakh in monthly sales and more than 500 daily orders. But we also believe that no two businesses
+                        are ever the same. Every product serves a different customer, every category behaves
+                        differently, and every business faces its own challenges. That’s why we don’t follow fixed
+                        formulas or one-size-fits-all solutions. We build our approach around your business, your
+                        products, and your goals—adapting every step to create meaningful and sustainable growth.</p>
+                    <div class="qt"><span>For us, success isn’t measured by the number of seller accounts we create.
+                            It’s measured by the businesses we help build, the trust we earn, and the long-term
+                            relationships we create along the way.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec sv dk" id="what-we-do">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="cen"><span class="eb md">What We Do</span>
+                    <h2 class="h2">Helping Businesses Build, Launch &amp; Grow Across Online Marketplaces.</h2>
+                    <p class="lead">We work with Direct-to-Consumer (D2C) brand owners, manufacturers, wholesalers, and
+                        retailers to build stronger marketplace businesses. Our work goes beyond setup—we focus on
+                        creating a better customer experience, improving business performance, and building a stronger
+                        foundation for long-term growth.</p>
+                </div>
+                <div class="wdg">
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="8" height="4" x="8" y="2" rx="1" />
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                <path d="m9 14 2 2 4-4" />
+                            </svg></div>
+                        <h3>Marketplace Business Setup</h3>
+                        <p>A strong business starts with a strong foundation. We help you launch your marketplace
+                            business with the right setup, ensuring everything is built correctly from day one.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
+                                <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+                            </svg></div>
+                        <h3>Product Listings That Build Customer Confidence</h3>
+                        <p>We believe great listings don’t just describe products—they answer customer questions, reduce
+                            buying hesitation, and help customers make confident purchase decisions.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m3 11 18-5v12L3 14v-3z" />
+                                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+                            </svg></div>
+                        <h3>Marketplace Advertising</h3>
+                        <p>Visibility creates opportunity. We help your products reach customers who are actively
+                            searching through marketplace advertising focused on meaningful business growth, not just
+                            more clicks.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <line x1="21" x2="14" y1="4" y2="4" />
+                                <line x1="10" x2="3" y1="4" y2="4" />
+                                <line x1="21" x2="12" y1="12" y2="12" />
+                                <line x1="8" x2="3" y1="12" y2="12" />
+                                <line x1="21" x2="16" y1="20" y2="20" />
+                                <line x1="12" x2="3" y1="20" y2="20" />
+                                <line x1="14" x2="14" y1="2" y2="6" />
+                                <line x1="8" x2="8" y1="10" y2="14" />
+                                <line x1="16" x2="16" y1="18" y2="22" />
+                            </svg></div>
+                        <h3>Business Management</h3>
+                        <p>Running a marketplace business requires consistent attention. We help manage the essential
+                            day-to-day activities that keep your business organized, responsive, and ready to grow.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <line x1="12" x2="12" y1="20" y2="10" />
+                                <line x1="18" x2="18" y1="20" y2="4" />
+                                <line x1="6" x2="6" y1="20" y2="16" />
+                            </svg></div>
+                        <h3>Performance Improvement</h3>
+                        <p>Every business has opportunities to improve. We continuously identify areas where your
+                            marketplace business can perform better, helping you build stronger results over time.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></div>
+                        <h3>Growth-Focused Solutions</h3>
+                        <p>No two businesses are the same. Every solution we provide is adapted to your products,
+                            business model, customers, and marketplace opportunities instead of following a fixed
+                            process.</p>
+                    </article>
+                    <article class="gc rv">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg></div>
+                        <h3>Long-Term Business Support</h3>
+                        <p>Our work doesn’t stop after your business goes live. We continue supporting your marketplace
+                            journey with ongoing improvements, dedicated management, and business-focused solutions
+                            designed for sustainable growth.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec nv dk" id="why-choose-us">
+            <div class="wrap wyc">
+                <div class="l"><span class="eb md">Why To Choose Us</span>
+                    <h2 class="h2">The Principles That Shape Every Business We Work With</h2>
+                    <p class="lead">The quality of results often reflects the quality of decisions behind them. These
+                        principles define how we think, how we work, and how we help businesses build a stronger future.
+                    </p>
+                </div>
+                <div class="stk">
+                    <article class="sk" style="--i:0"><span class="no">01</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg></div>
+                            <h3>Understanding Comes Before Action</h3>
+                        </div>
+                        <ul>
+                            <li>Before making recommendations or implementing changes, we take the time to understand
+                                your products, your business model, your customers, and your objectives.</li>
+                            <li>Better understanding leads to better decisions.</li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:1"><span class="no">02</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                </svg></div>
+                            <h3>Quality Creates Better Results</h3>
+                        </div>
+                        <ul>
+                            <li>We don’t measure success by the number of tasks completed.</li>
+                            <li>We focus on doing the right work, with the right level of attention.</li>
+                            <li>Meaningful improvements create stronger business outcomes than unnecessary activity.
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:2"><span class="no">03</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg></div>
+                            <h3>Customer Decisions Matter More Than Clicks</h3>
+                        </div>
+                        <ul>
+                            <li>Getting visitors to a product is only part of the journey.</li>
+                            <li>We focus on improving the information, presentation, and buying experience that helps
+                                customers make confident purchasing decisions.</li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:3"><span class="no">04</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                                    <path d="m9 12 2 2 4-4" />
+                                </svg></div>
+                            <h3>Growth Commitment</h3>
+                        </div>
+                        <ul>
+                            <li>More than a service, it’s our commitment to your long-term marketplace growth.</li>
+                            <li>Selected service packages include continued account management without additional
+                                management charges, subject to the terms of our written agreement.</li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:4"><span class="no">05</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+                                </svg></div>
+                            <h3>Transparency Builds Better Relationships</h3>
+                        </div>
+                        <ul>
+                            <li>We believe businesses deserve honest communication, realistic expectations, and complete
+                                clarity throughout every stage of the journey.</li>
+                            <li>Strong relationships are built on trust, not assumptions.</li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:5"><span class="no">06</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                                    <polyline points="16 7 22 7 22 13" />
+                                </svg></div>
+                            <h3>Always Improving</h3>
+                        </div>
+                        <ul>
+                            <li>Customer behaviour, marketplace trends, and business opportunities continue to evolve.
+                            </li>
+                            <li>We believe improvement is an ongoing process.</li>
+                            <li>We continuously refine our approach to help businesses stay competitive in a changing
+                                marketplace.</li>
+                        </ul>
+                    </article>
+                    <article class="sk" style="--i:6"><span class="no">07</span>
+                        <div class="hd2">
+                            <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z" />
+                                </svg></div>
+                            <h3>Your Business Comes First</h3>
+                        </div>
+                        <ul>
+                            <li>Every recommendation we make is based on what creates the greatest value for your
+                                business.</li>
+                            <li>We don’t follow trends for the sake of trends—we focus on decisions that make practical
+                                business sense.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec sv dk" id="process">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="cen">
+                    <div class="hbox">
+                        <h2 class="h2">Our Proven Working Process</h2>
+                    </div>
+                </div>
+                <div class="jr"><i class="orb"></i>
+                    <div class="js2" data-n="01">
+                        <h3>Business Consultation</h3>
+                        <p>We begin by understanding your business, products, goals, and marketplace requirements to
+                            create the right direction before the work begins.</p>
+                    </div>
+                    <div class="js2" data-n="02">
+                        <h3>Planning &amp; Preparation</h3>
+                        <p>Based on your business requirements, we prepare a structured roadmap covering marketplace
+                            setup, product readiness, and the complete launch process.</p>
+                    </div>
+                    <div class="js2" data-n="03">
+                        <h3>Marketplace Setup &amp; Launch</h3>
+                        <p>We complete the required setup, optimize your marketplace presence, and prepare your business
+                            for a professional marketplace launch.</p>
+                    </div>
+                    <div class="js2" data-n="04">
+                        <h3>Business Management</h3>
+                        <p>After launch, we manage the essential activities required to keep your marketplace business
+                            running efficiently and smoothly.</p>
+                    </div>
+                    <div class="js2" data-n="05">
+                        <h3>Performance Optimization</h3>
+                        <p>We continuously monitor performance, identify improvement opportunities, and optimize
+                            different areas of your business to achieve better results.</p>
+                    </div>
+                    <div class="js2" data-n="06">
+                        <h3>Scale &amp; Grow</h3>
+                        <p>As your business grows, we continue supporting your expansion with improved processes, better
+                            opportunities, and solutions designed to help your business move forward.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec nv dk" id="vision">
+            <div class="wrap vm">
+                <article class="vc">
+                    <div class="vh">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg></div><span class="eb vb">Our Vision</span>
+                    </div>
+                    <h2 class="h2">Every Dream Deserves An Opportunity To Grow.</h2>
+                    <p class="lead">We believe building an ecommerce business shouldn’t depend on who you are, how much
+                        money you have, or where you come from. It should depend on your ambition to build something
+                        meaningful. Whether you’re a student with a dream, a working professional looking for a new
+                        beginning, a Direct-to-Consumer (D2C) brand owner launching your next product, or a
+                        manufacturer, wholesaler, or retailer ready to expand online, our vision is to make ecommerce
+                        more accessible for everyone who is ready to take the first step.</p>
+                </article>
+                <article class="vc">
+                    <div class="vh">
+                        <div class="em"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg></div><span class="eb vb">Our Mission</span>
+                    </div>
+                    <h2 class="h2">Removing Barriers. Creating Opportunities.</h2>
+                    <p class="lead">Every entrepreneur faces different challenges. Some have great products but don’t
+                        have the time to manage online marketplaces. Others have the passion to start but don’t have the
+                        capital to build a traditional ecommerce business. Our mission is to remove those barriers by
+                        providing marketplace solutions for established businesses and dropshipping solutions for
+                        aspiring entrepreneurs, making it easier for more people to build successful ecommerce
+                        businesses with confidence.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="sec sv dk" id="faqs">
+            <div class="stars"></div>
+            <div class="wrap">
+                <div class="cen">
+                    <div class="hbox">
+                        <h2 class="h2">Frequently Asked Questions</h2>
+                    </div>
+                    <p class="sub2">Clarity Builds Confidence.</p>
+                    <p class="lead">We believe informed decisions lead to better business journeys. Here are answers to
+                        the questions we hear most often.</p>
+                </div>
+                <div class="fq">
+                    <details>
+                        <summary>Who can benefit from your ecommerce services?</summary>
+                        <p>Our services are designed for Direct-to-Consumer (D2C) brand owners, manufacturers,
+                            wholesalers, retailers, as well as aspiring entrepreneurs, students, and working
+                            professionals who want to build an ecommerce business through dropshipping.</p>
+                    </details>
+                    <details>
+                        <summary>Which marketplaces do you support?</summary>
+                        <p>We provide marketplace solutions for Amazon, Flipkart, and Meesho, along with Amazon and
+                            Shopify dropshipping setup services.</p>
+                    </details>
+                    <details>
+                        <summary>What services do you provide?</summary>
+                        <p>Our services include marketplace business setup, product listings, account management,
+                            marketplace advertising, performance improvement, and dropshipping business setup.</p>
+                    </details>
+                    <details>
+                        <summary>I’m launching my first product. Can you help?</summary>
+                        <p>Absolutely. Whether you’re launching your first product or expanding an existing business, we
+                            help you build the right marketplace foundation from the beginning.</p>
+                    </details>
+                    <details>
+                        <summary>Do you provide support after the business is launched?</summary>
+                        <p>Yes. Depending on your selected service package, we continue supporting your marketplace
+                            business with management, improvements, and dedicated assistance.</p>
+                    </details>
+                    <details>
+                        <summary>What is your Growth Commitment?</summary>
+                        <p>Selected service packages include our Growth Commitment, which provides continued account
+                            management without additional management charges, as outlined in our written agreement.
+                            Terms &amp; Conditions Apply.</p>
+                    </details>
+                    <details>
+                        <summary>Can students or working professionals start an ecommerce business with your help?
+                        </summary>
+                        <p>Yes. Our dropshipping solutions are designed to help aspiring entrepreneurs, students, and
+                            working professionals start an ecommerce business without the need to purchase inventory
+                            upfront.</p>
+                    </details>
+                    <details>
+                        <summary>How do you create a strategy for every business?</summary>
+                        <p>Every business has different products, goals, and customers. Instead of following a fixed
+                            approach, we understand your business and create solutions based on your specific
+                            requirements.</p>
+                    </details>
+                    <details>
+                        <summary>How do I get started with Marwadi Ecom Wala?</summary>
+                        <p>Getting started is simple. Book a free consultation with our team, discuss your business
+                            goals, and we’ll recommend the most suitable solution for your business.</p>
+                    </details>
+                    <details>
+                        <summary>Why choose Marwadi Ecom Wala?</summary>
+                        <p>We combine marketplace expertise with a business-first approach. Our focus is not just on
+                            completing tasks but on helping businesses build a stronger, more sustainable ecommerce
+                            presence through tailored solutions and dedicated support.</p>
+                    </details>
+                    <details class="ask">
+                        <summary>Still have a question? Ask us anything.</summary>
+                        <div class="af">
+                            <div class="ap" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+                            <div class="sl">
+                                <div class="sd">
+                                    <div class="fs"><label for="an">What’s your name?</label><input id="an"
+                                            autocomplete="name" maxlength="60" placeholder="Your name"><span
+                                            class="er"></span>
+                                        <div class="ab"><button type="button" class="btn g nx">Next</button></div>
+                                    </div>
+                                    <div class="fs"><label for="aph">Your contact number</label><input id="aph"
+                                            type="tel" inputmode="numeric" autocomplete="tel" maxlength="14"
+                                            placeholder="10-digit mobile number"><span class="er"></span>
+                                        <div class="ab"><button type="button" class="btn l bk">Back</button><button
+                                                type="button" class="btn g nx">Next</button></div>
+                                    </div>
+                                    <div class="fs"><label for="aq">Drop your question</label><textarea id="aq" rows="4"
+                                            maxlength="500" placeholder="Type your question here"></textarea><input
+                                            class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><span
+                                            class="er"></span>
+                                        <p class="nt">We’ll use your number only to reply to your question.</p>
+                                        <div class="ab"><button type="button" class="btn l bk">Back</button><button
+                                                type="button" class="btn g" id="asend">Send Question</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="am" aria-live="polite"></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec ctab dk" id="contact">
+            <div class="gridbg"></div>
+            <div class="wrap">
+                <h2>Ready To Build Your Online Brand?</h2>
+                <p>Let’s take your business to the next level. Connect with our team and discover the right marketplace
+                    growth strategy for your business.</p><a class="btn g"
+                    data-wa="Hi, I’d like to book a free consultation." href="#">Book Your Free Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dk ft">
+        <div class="wrap">
+            <div class="ft-g">
+                <div class="ft-b">
+                    <a class="ft-logo" href="main.html" aria-label="Marwadi Ecom Wala home"><img
+                            src="images/favicon.png" alt="Marwadi Ecom Wala" width="64" height="64"></a>
+                    <p class="ft-name">Marwadi Ecom Wala</p>
+                    <p class="ft-tag">We Don’t Just Build Marketplace Presence. We Build Businesses That Grow.</p>
+                    <i class="ft-line"></i>
+                </div>
+                <div class="ft-c">
+                    <h4>Get In Touch</h4>
+                    <a class="ft-r wa" data-wa="Hi, I’d like to know more about your services." href="#"><span
+                            class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+                            </svg></span><span><small>WhatsApp</small><b>+91 90399 75079</b></span></a>
+                    <a class="ft-r" href="mailto:support@marwadiecomwala.in"><span class="ic"><svg viewBox="0 0 24 24"
+                                aria-hidden="true">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg></span><span><small>Email</small><b>support@marwadiecomwala.in</b></span></a>
+                    <a class="ft-r" href="https://www.google.com/maps/search/?api=1&amp;query=Indore%2C+Madhya+Pradesh"
+                        target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg></span><span><small>Location</small><b>Indore, Madhya Pradesh</b><em>View on Maps
+                                →</em></span></a>
+                </div>
+                <div class="ft-l">
+                    <details class="fd">
+                        <summary>Quick Links</summary>
+                        <ul>
+                            <li><a href="main.html">Home</a></li>
+                            <li><a href="main.html#services">Services</a></li>
+                            <li><a href="main.html#marketplaces">Marketplaces</a></li>
+                            <li><a href="main.html#about">About Us</a></li>
+                            <li><a href="main.html#why-choose-us">Why Choose Us</a></li>
+                            <li><a href="main.html#faqs">FAQs</a></li>
+                        </ul>
+                    </details>
+                    <details class="fd">
+                        <summary>Policies</summary>
+                        <ul>
+                            <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="refund-policy.html">Refund &amp; Cancellation</a></li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+            <div class="ft-bt">
+                <p>© <span id="yr">2026</span> Marwadi Ecom Wala. All rights reserved.</p>
+                <p class="ft-mk">Made with ❤️ and ☕ by </p>
+                <p class="ft-mk"><a href="mailto:atharvamehta95@email.com">Atharva Mehta</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mb"><a class="btn g" data-wa="Hi, I’d like to book a free consultation." href="#">WhatsApp Us</a><a
+            class="btn l" href="tel:+919039975079">Call</a></div>
+
+    <script>
+        (function () {
+            var $ = function (s, r) { return (r || document).querySelector(s) }, A = function (s) { return [].slice.call(document.querySelectorAll(s)) };
+            var NUM = "919039975079";
+            A("[data-wa]").forEach(function (a) { a.href = "https://wa.me/" + NUM + "?text=" + encodeURIComponent(a.dataset.wa); a.target = "_blank"; a.rel = "noopener" });
+            $("#yr").textContent = new Date().getFullYear();
+            var h = $("header"); addEventListener("scroll", function () { h.classList.toggle("sc", scrollY > 8) }, { passive: true });
+            var bt = $(".burger"), nv = $("#nav");
+            bt.onclick = function () { var o = nv.classList.toggle("open"); bt.setAttribute("aria-expanded", o) };
+            A("nav a").forEach(function (a) { a.onclick = function () { nv.classList.remove("open"); bt.setAttribute("aria-expanded", false) } });
+            /* mobile menu */
+            var mm = $("#mm");
+            function mo(o) { if (o) { mm.hidden = false; void mm.offsetWidth } mm.classList.toggle("open", o); bt.setAttribute("aria-expanded", o); document.documentElement.classList.toggle("nolock", o); if (!o) setTimeout(function () { if (!mm.classList.contains("open")) mm.hidden = true }, 350) }
+            bt.onclick = function () { mo(!mm.classList.contains("open")) };
+            mm.addEventListener("click", function (e) { if (e.target.closest("a") || e.target === mm) mo(false) });
+            addEventListener("keydown", function (e) { if (e.key === "Escape") mo(false) });
+            matchMedia("(min-width:901px)").addEventListener("change", function (e) { if (e.matches) mo(false) });
+            var pg = location.pathname.split("/").pop() || "main.html"; A(".mg a,.mt a").forEach(function (a) { if (a.getAttribute("href") === pg) a.classList.add("on") });
+            var t = $("#trk"), pg = $("#pg");
+            function up() { var m = t.scrollWidth - t.clientWidth; pg.style.width = (20 + (m > 0 ? t.scrollLeft / m : 1) * 80) + "%" }
+            t.addEventListener("scroll", up, { passive: true }); up();
+            A(".arr").forEach(function (b) { b.onclick = function () { t.scrollBy({ left: b.dataset.d * (t.firstElementChild.offsetWidth + 18), behavior: "smooth" }) } });
+            var lu = 0, hv2 = 0, vis = 0; new IntersectionObserver(function (e) { vis = e[0].isIntersecting }, { threshold: .3 }).observe(t);
+            ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (v) { t.addEventListener(v, function () { lu = Date.now() }, { passive: true }) });
+            A(".arr").forEach(function (b) { b.addEventListener("click", function () { lu = Date.now() }) });
+            t.addEventListener("mouseenter", function () { hv2 = 1 }); t.addEventListener("mouseleave", function () { hv2 = 0; lu = Date.now() });
+            if (!matchMedia("(prefers-reduced-motion:reduce)").matches) setInterval(function () { if (!vis || hv2 || Date.now() - lu < 5000) return; var w = t.firstElementChild.offsetWidth + 18, m = t.scrollWidth - t.clientWidth; t.scrollTo({ left: t.scrollLeft >= m - 6 ? 0 : Math.min((Math.round(t.scrollLeft / w) + 1) * w, m), behavior: "smooth" }) }, 3500);
+            var io = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target) } }) }, { threshold: .15 });
+            A(".rv").forEach(function (e) { io.observe(e) });
+            var hb = $("#hub"), sg = A(".sg"); A(".nd").forEach(function (n, k) { function s(v) { sg[k].classList.toggle("on", v); hb.classList.toggle("hv", v) } n.onmouseenter = n.onfocus = function () { s(1) }; n.onmouseleave = n.onblur = function () { s(0) } });
+            /* ---- v11: typewriter ---- */
+            (function () {
+                var el = $("#tw"), box = $(".rot"); if (!el) return;
+                var L = ["Transforming Products Into Growing Online Brands.", "Helping Businesses Move From Offline To Online Growth.", "Building Stronger Businesses In The Ecommerce Era.", "Turning Marketplace Opportunities Into Business Growth.", "Your Partner In Building Successful Ecommerce Journeys."];
+                if (matchMedia("(prefers-reduced-motion:reduce)").matches) { el.textContent = L[0]; return }
+                function fit(c) { box.style.minHeight = ""; var m = 0; L.forEach(function (s) { el.textContent = s; m = Math.max(m, box.offsetHeight) }); box.style.minHeight = m + "px"; el.textContent = c }
+                fit(""); var rt; addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { fit(el.textContent) }, 200) });
+                var i = 0, j = 0, d = 0;
+                function tick() { var s = L[i]; if (!d) { j++; el.textContent = s.slice(0, j); if (j === s.length) { d = 1; setTimeout(tick, 1800); return } setTimeout(tick, 55) } else { j--; el.textContent = s.slice(0, j); if (j === 0) { d = 0; i = (i + 1) % L.length; setTimeout(tick, 350); return } setTimeout(tick, 28) } }
+                setTimeout(tick, 900)
+            })();
+            /* ---- v11: fast count-up that stops on the number ---- */
+            var cn = A(".cnt"), rmq = matchMedia("(prefers-reduced-motion:reduce)").matches;
+            if (cn.length) {
+                var co = new IntersectionObserver(function (e) {
+                    e.forEach(function (x) {
+                        if (!x.isIntersecting) return; co.unobserve(x.target);
+                        var el = x.target, to = +el.dataset.to, p = el.dataset.pre || "", s = el.dataset.suf || "", t0 = 0;
+                        function f(t) { t0 = t0 || t; var k = Math.min((t - t0) / 1500, 1), v = k === 1 ? 1 : 1 - Math.pow(2, -10 * k); el.textContent = p + Math.round(to * v) + s; if (k < 1) requestAnimationFrame(f) }
+                        requestAnimationFrame(f)
+                    })
+                }, { threshold: .5 });
+                cn.forEach(function (e) { if (!rmq) e.textContent = (e.dataset.pre || "") + 0 + (e.dataset.suf || ""); co.observe(e) })
+            }
+        })();
+        if (matchMedia("(hover:none)").matches) {
+            if (!matchMedia("(prefers-reduced-motion:reduce)").matches) {
+                var nds = A(".nd"), si = 0;
+                function spot() { nds.forEach(function (n, k) { sg[k].classList.toggle("on", k === si); n.classList.toggle("lit", k === si) }); si = (si + 1) % nds.length }
+                spot(); setInterval(spot, 2200)
+            }
+            var so = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("sh"); so.unobserve(x.target) } }) }, { threshold: .6 });
+            A(".gb,.dtag,.dbtn").forEach(function (e) { so.observe(e) })
+        }
+    </script>
+    <script>
+        (function () {
+            var A = function (s) { return [].slice.call(document.querySelectorAll(s)) }, $ = function (s) { return document.querySelector(s) };
+            var NUM = "919039975079", ASK_ENDPOINT = "", rm = matchMedia("(prefers-reduced-motion:reduce)").matches;
+            /* ASK_ENDPOINT: paste your Google Apps Script / Formspree URL here. Empty = questions go to WhatsApp. */
+            A(".fq details").forEach(function (d) { d.addEventListener("toggle", function () { if (d.open) A(".fq details").forEach(function (o) { if (o !== d) o.open = false }) }) });
+            var io2 = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io2.unobserve(x.target) } }) }, { threshold: .5 }); A(".bt li").forEach(function (e) { io2.observe(e) });
+            /* floating logo: gentle tilt toward the pointer */
+            var st = $(".stage"), lg = $(".flogo"), tx = 0, ty = 0, rx = 0, ry = 0;
+            if (matchMedia("(hover:hover)").matches && !rm) {
+                document.addEventListener("pointermove", function (e) { var b = st.getBoundingClientRect(); tx = Math.max(-1, Math.min(1, (e.clientX - b.left - b.width / 2) / 600)); ty = Math.max(-1, Math.min(1, (e.clientY - b.top - b.height / 2) / 600)) });
+                (function t() { rx += (ty * -8 - rx) * .06; ry += (tx * 10 - ry) * .06; lg.style.transform = "translate(-50%,-50%) rotateX(" + rx + "deg) rotateY(" + ry + "deg)"; requestAnimationFrame(t) })()
+            }
+            /* journey: orb travels only in the gaps, never over the number badges */
+            var jr = $(".jr"), js = A(".js2"), orb = $(".orb"), sgs = [];
+            for (var i = 0; i < js.length - 1; i++) { var g = document.createElement("i"); g.className = "sg2"; g.innerHTML = "<b></b>"; jr.appendChild(g); sgs.push(g) }
+            function jp() {
+                var r = jr.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight * .6 - r.top) / r.height)), gp = [], L = 0;
+                for (var i = 0; i < js.length - 1; i++) { var a = js[i].offsetTop + 14 + 48 + 8, b = js[i + 1].offsetTop + 14 - 8; gp.push([a, b, L]); L += b - a; sgs[i].style.top = a + "px"; sgs[i].style.height = (b - a) + "px" }
+                var d = p * L, y = gp[0][0];
+                gp.forEach(function (g, i) { var f = Math.max(0, Math.min(1, (d - g[2]) / (g[1] - g[0]))); sgs[i].firstChild.style.transform = "scaleY(" + f + ")"; if (d >= g[2] && d <= g[2] + g[1] - g[0]) y = g[0] + d - g[2] });
+                if (p >= 1) y = gp[gp.length - 1][1];
+                orb.style.top = y + "px"; orb.style.opacity = p > 0 ? 1 : 0;
+                js.forEach(function (s, i) { var on = i == 0 ? p > .005 : d >= gp[i - 1][2] + gp[i - 1][1] - gp[i - 1][0] - 1; s.classList.toggle("on", on) })
+            }
+            addEventListener("scroll", jp, { passive: true }); addEventListener("resize", jp); jp();
+            /* stacking principle cards */
+            var sk = A(".sk"), tk = 0; function stk() { tk = 0; sk.forEach(function (c, i) { var k = 0; for (var j = i + 1; j < sk.length; j++)if (sk[j].getBoundingClientRect().top <= 96 + j * 18 + 2) k++; c.style.transform = k ? "scale(" + (1 - k * .04) + ")" : ""; c.style.filter = k ? "brightness(" + (1 - k * .1) + ")" : "" }) }
+            addEventListener("scroll", function () { if (!tk) tk = requestAnimationFrame(stk) }, { passive: true }); stk();
+            /* ask us anything: 3 slides */
+            var sd = $(".sd"), sl = $(".sl"), ds = A(".ap i"), fs = A(".fs"), cur = 0; function sh() { sl.style.height = fs[cur].offsetHeight + "px" } $(".ask").addEventListener("toggle", sh); addEventListener("resize", sh);
+            function go(n) { cur = n; sh(); sd.style.transform = "translateX(-" + n * 100 + "%)"; ds.forEach(function (d, i) { d.classList.toggle("on", i <= n) }); setTimeout(function () { var f = fs[n].querySelector("input,textarea"); if (f) f.focus({ preventScroll: true }) }, 450) }
+            function er(n, m) { fs[n].querySelector(".er").textContent = m || ""; sh() }
+            A(".nx").forEach(function (b) {
+                b.onclick = function () {
+                    if (cur == 0) { if ($("#an").value.trim().length < 2) { er(0, "Please enter your name."); return } er(0) }
+                    if (cur == 1) { var v = $("#aph").value.replace(/\D/g, "").replace(/^91(?=\d{10}$)/, ""); if (!/^[6-9]\d{9}$/.test(v)) { er(1, "Please enter a valid 10-digit mobile number."); return } er(1) } go(cur + 1)
+                }
+            });
+            A(".bk").forEach(function (b) { b.onclick = function () { go(cur - 1) } });
+            $("#asend").onclick = function () {
+                var q = $("#aq").value.trim(); if (q.length < 5) { er(2, "Please type your question."); return } if ($(".hp").value) return; er(2);
+                var d = { name: $("#an").value.trim(), phone: $("#aph").value.replace(/\D/g, ""), question: q, page: location.href, time: new Date().toISOString() }, m = $(".am");
+                function done() { $(".sl").hidden = true; $(".ap").hidden = true; m.textContent = "Thank you, " + d.name + "! We’ve received your question and will contact you on " + d.phone + "." }
+                if (ASK_ENDPOINT) { fetch(ASK_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(d) }).then(done).catch(function () { m.textContent = "Something went wrong. Please try again or message us on WhatsApp." }) }
+                else { open("https://wa.me/" + NUM + "?text=" + encodeURIComponent("Hi, I’m " + d.name + ". My number: " + d.phone + ". My question: " + q), "_blank", "noopener"); done() }
+            };
+
+            /* mobile menu: close first, then scroll to the section */
+            A('.mm a[href^="#"]').forEach(function (a) {
+                a.addEventListener("click", function (e) {
+                    var id = a.getAttribute("href"), el = id.length > 1 ? $(id) : null;
+                    e.preventDefault();
+                    setTimeout(function () { if (el) el.scrollIntoView({ behavior: rm ? "auto" : "smooth" }); else scrollTo({ top: 0, behavior: rm ? "auto" : "smooth" }); history.replaceState(null, "", id) }, 360)
+                })
+            });
+        })();
+    </script>
+</body>
+
+</html>
