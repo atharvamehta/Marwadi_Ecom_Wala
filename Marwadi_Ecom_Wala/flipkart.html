@@ -2089,25 +2089,10 @@
             }
         }
 
-        .pw {
-            display: grid
-        }
-
-        .pn,
-        .pn.on {
-            display: grid;
-            grid-area: 1/1;
-            align-content: start;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity .45s, visibility .45s;
-            animation: none
-        }
-
-        .pn.on {
-            visibility: visible;
-            opacity: 1
-        }
+        /* FIX: panel height follows the visible tab */
+.pw { display: block }
+.pn { display: none; gap: 16px; align-content: start }
+.pn.on { display: grid; animation: rise .5s both }
 
         .hbox {
             display: inline-block;
@@ -2508,7 +2493,7 @@ footer.ft{position:relative;overflow:hidden;background:radial-gradient(60% 50% a
         <section class="sec sv dk">
             <div class="stars"></div>
             <div class="wrap wy">
-                <div class="l">
+                <div class="l"><span class="eb md nw">Why Sell On Flipkart?</span>
                     <h2 class="h2">Where Growing Brands Meet India’s Shoppers.</h2>
                     <p class="pq">Sales happen where customers already are.</p>
                     <p class="lead">Flipkart is one of India’s most recognized homegrown marketplaces, backed by Walmart

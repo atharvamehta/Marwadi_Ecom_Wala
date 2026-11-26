@@ -2089,25 +2089,10 @@
             }
         }
 
-        .pw {
-            display: grid
-        }
-
-        .pn,
-        .pn.on {
-            display: grid;
-            grid-area: 1/1;
-            align-content: start;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity .45s, visibility .45s;
-            animation: none
-        }
-
-        .pn.on {
-            visibility: visible;
-            opacity: 1
-        }
+        /* FIX: panel height follows the visible tab */
+.pw { display: block }
+.pn { display: none; gap: 16px; align-content: start }
+.pn.on { display: grid; animation: rise .5s both }
 
         .hbox {
             display: inline-block;
@@ -2735,7 +2720,7 @@
         <section class="sec sv dk">
             <div class="stars"></div>
             <div class="wrap wy">
-                <div class="l">
+                <div class="l"><span class="eb md nw">Why Sell On Meesho?</span>
                     <h2 class="h2">Start Selling Without Paying Commission.</h2>
                     <p class="pq">When the cost of starting is low, the courage to start gets easier.</p>
                     <p class="lead">Meesho is built for businesses that want to start online without heavy investment.
